@@ -11,7 +11,7 @@ define(
 
             that.options = options;
 
-            that.view = view({el:(options && options.el) ? options.el : null});
+            that.view = view({el : (options && options.el) ? options.el : null});
 
             that.model = model({attr: (options && options.attr) ? options.attr : {}});
 
@@ -33,8 +33,8 @@ define(
                                 options.broker = broker || parent.options.broker;
                             } else if (broker) { // When a root block views get instantiated.
                                 options.broker = broker;
-                            } else { // Any other case. (Deprecated. This should happen when the root template gets rendered.)
-                                options.broker = new events();
+                            } else { // Secure fallback. (This should not happen.)
+                                options.broker = Object.create(events);
                             }
                             var block = block_contr(options);
                         });
