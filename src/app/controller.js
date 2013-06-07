@@ -11,10 +11,6 @@ define(
 
             that.options = options;
 
-            that.view = view({el : (options && options.el) ? options.el : null});
-
-            that.model = model({attr: (options && options.attr) ? options.attr : {}});
-
             that.loadBlocks = function (broker, parent) {
                 var $el = parent ? parent.view.$el : $(document);
 
@@ -28,7 +24,7 @@ define(
                         require([options.block], function (block_contr) {
                             options.el = self;
 
-                            if (parent) { // When a block view instantiates the embed block views.
+                            if (parent) { // When a block view instantiates the embeded block views.
                                 options.parent = parent;
                                 options.broker = broker || parent.options.broker;
                             } else if (broker) { // When a root block views get instantiated.
