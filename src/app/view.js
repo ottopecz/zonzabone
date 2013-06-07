@@ -36,7 +36,7 @@ define(
              * @param {String} selector Css selector of the target
              * @return {jQuery.Object}
              */
-            that.$ = function(selector) {
+            that.$ = function (selector) {
                 return this.$el.find(selector);
             };
 
