@@ -40,6 +40,8 @@ define(
                 return this;
             };
 
+            that.view = view({ "el": options.el });
+
             return that;
         };
     }
