@@ -4,10 +4,10 @@
  */
 /*global define */
 define(
-    ['jquery', 'app/events'],
-    function ($, events) {
+    ['jquery', 'app/ui_super'],
+    function ($, ui_super) {
         return function (options) {
-            var that = Object.create(events);
+            var that = Object.create(ui_super);
 
             that.attr = options.attr;
 

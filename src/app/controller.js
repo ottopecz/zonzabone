@@ -4,10 +4,10 @@
  */
 /*global define, require*/
 define(
-    ['jquery', 'app/events', 'app/model', 'app/view', 'jq/fn.find_closest'],
-    function ($, events, model, view) {
+    ['jquery', 'app/ui_super', 'app/view', 'jq/fn.find_closest'],
+    function ($, ui_super, view) {
         return function (options) {
-            var that = Object.create(events);
+            var that = Object.create(ui_super);
 
             that.options = options;
 
@@ -30,7 +30,7 @@ define(
                             } else if (broker) { // When a root block views get instantiated.
                                 options.broker = broker;
                             } else { // Secure fallback. (This should not happen.)
-                                options.broker = Object.create(events);
+                                options.broker = Object.create(ui_super);
                             }
                             var block = block_contr(options);
                         });
@@ -40,7 +40,13 @@ define(
                 return this;
             };
 
-            that.view = view({ "el": options.el });
+            /**
+             * Initializes the controller
+             * @abstract
+             */
+            that.init = function () {
+                that.view = that.view || view({ "el": options.el });
+            };
 
             return that;
         };

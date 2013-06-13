@@ -93,5 +93,9 @@ define(function () {
         return this;
     };
 
+    that.getProto = function () {
+        return Object.getPrototypeOf(this);
+    };
+
     return that;
 });
