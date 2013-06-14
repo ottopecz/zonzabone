@@ -45,7 +45,7 @@ define(
              * @abstract
              */
             that.init = function () {
-                that.view = that.view || view({ "el": options.el });
+                this.view = this.view || view({ "el": options.el });
             };
 
             return that;

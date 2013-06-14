@@ -4,20 +4,26 @@
  */
 /*global define*/
 define(
-    ['jquery', 'app/ui_super'],
-    function ($, ui_super) {
+    ['jquery', 'app/ui_super', 'mustache'],
+    function ($, ui_super, mustache) {
         return function (options) {
             var that = Object.create(ui_super);
 
-            that.el = options.el;
+            that.$el = $(options.el);
 
-            that.$el = $(that.el);
+            that.el = that.$el.get(0);
 
             /**
              * @abstract
              * @type {Object}
              */
-            that.viewModel = {};
+            that.viewModel = {
+                _: function () {
+                    return function (t) {
+                        return t;
+                    };
+                }
+            };
 
             /**
              * @abstract
@@ -33,7 +39,7 @@ define(
 
             /**
              * Finds an element in the view
-             * @param {String} selector Css selector of the target
+             * @param {String} selector Css selector to the target
              * @return {jQuery.Object}
              */
             that.$ = function (selector) {
@@ -45,10 +51,25 @@ define(
              * @return {Object}
              */
             that.render = function () {
+                this.$el.html(mustache.to_html(this.template, this.viewModel, this.partials));
                 return this;
             };
 
-            return that;
+            /**
+             * Initializes the view
+             * @param {String} options Initial arguments
+             * @return {view}
+             * @abstract
+             */
+            that.init = function (options) {
+                if (options.className) {
+                    this.$el.addClass(options.className);
+                }
+
+                return this;
+            };
+
+            return that.init(options);
         };
     }
 );
