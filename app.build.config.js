@@ -2,7 +2,6 @@
     baseUrl: "../source/js/",
     paths: {
         "jquery": "empty:",
-        "jq": "jq",
         "mustache": "empty:"
     },
     name: "app/app",
