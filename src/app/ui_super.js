@@ -13,5 +13,6 @@ define(['app/events', 'app/utils', 'jquery'],
             return Object.getPrototypeOf(this);
         };
 
-    return that;
-});
+        return that;
+    }
+);
