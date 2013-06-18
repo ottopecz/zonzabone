@@ -45,7 +45,22 @@ define(
              * @abstract
              */
             that.init = function () {
+                var key, event, selector, handler, ctx;
+
                 this.view = this.view || view({ "el": options.el });
+
+                if (this.events) {
+                    for (key in this.events) {
+                        if (this.events.hasOwnProperty(key)) {
+                            event = key.split(" ")[0];
+                            selector = key.split(" ")[1];
+                            handler = this.events[key].handler;
+                            ctx = this.events[key].ctx;
+
+                            $(this.options.el).on(event, selector, handler.bind(ctx));
+                        }
+                    }
+                }
             };
 
             return that;
