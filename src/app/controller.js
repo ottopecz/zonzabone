@@ -12,7 +12,7 @@ define(
             that.options = options;
 
             that.loadBlocks = function (broker, parent) {
-                var $el = parent ? parent.view.$el : $(document);
+                var $el = parent ? $(parent.options.el) : $(document);
 
                 $el.find('*[data-block]').each(function () {
                     var $this = $(this), self, options;

@@ -9,9 +9,9 @@ define(
         return function (options) {
             var that = Object.create(ui_super);
 
-            that.$el = $(options.el);
+            that.$el = options.el ? $(options.el) : null;
 
-            that.el = that.$el.get(0);
+            that.el = that.$el ? that.$el.get(0) : null;
 
             /**
              * @abstract

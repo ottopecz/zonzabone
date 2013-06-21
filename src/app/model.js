@@ -16,6 +16,15 @@ define(
             that.attrs = {};
 
             /**
+             * Retrieves the value with the given key
+             * @param {String} key The key of the wanted value
+             * @return {*}
+             */
+            that.get = function (key) {
+                return this.attrs[key];
+            };
+
+            /**
              * Initializes the model
              * @param {String} options Initial attributes
              * @return {model}

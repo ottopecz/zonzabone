@@ -4,8 +4,8 @@
  */
 /*global define*/
 define(
-    ['jquery', 'app/ui_super', 'app/events', 'app/utils', 'app/model', 'app/view', 'app/controller'],
-    function ($, ui_super, events, utils, model, view, controller) {
+    ['jquery', 'app/ui_super', 'app/events', 'app/utils', 'app/model', 'app/view', 'app/controller', 'app/collection'],
+    function ($, ui_super, events, utils, model, view, controller, collection) {
         "use strict";
 
         return {
@@ -14,7 +14,8 @@ define(
             utils: utils,
             view: view,
             model: model,
-            controller: controller
+            controller: controller,
+            collection: collection
         };
     }
 );
