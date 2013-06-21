@@ -4,8 +4,8 @@
  */
 /*global define, require*/
 define(
-    ['jquery', 'app/ui_super', 'app/view', 'jq/fn.find_closest'],
-    function ($, ui_super, view) {
+    ['jquery', 'app/ui_super', 'app/view', 'app/model', 'jq/fn.find_closest'],
+    function ($, ui_super, view, model) {
         return function (options) {
             var that = Object.create(ui_super);
 
@@ -44,10 +44,17 @@ define(
              * Initializes the controller
              * @abstract
              */
-            that.init = function () {
-                var key, event, selector, handler, ctx;
+            that.init = function (options) {
+                var key, event, selector, handler, ctx,
+                    modelOpts = $.extend({}, options);
 
                 this.view = this.view || view({ "el": options.el });
+
+                delete modelOpts.el;
+                delete modelOpts.broker;
+                delete modelOpts.block;
+                this.model = this.model || model(modelOpts);
+
 
                 if (this.events) {
                     for (key in this.events) {
