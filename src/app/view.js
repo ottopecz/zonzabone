@@ -9,9 +9,12 @@ define(
         return function (options) {
             var that = Object.create(ui_super);
 
-            that.$el = options.el ? $(options.el) : null;
+            that.$el = (options && options.el) ? $(options.el) : null;
 
             that.el = that.$el ? that.$el.get(0) : null;
+
+            that.className = (options && options.className) ? options.className : null;
+
 
             /**
              * @abstract
@@ -62,7 +65,7 @@ define(
              * @abstract
              */
             that.init = function (options) {
-                if (options.className) {
+                if (this.className) {
                     this.$el.addClass(options.className);
                 }
 
