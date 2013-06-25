@@ -6,6 +6,8 @@
 define(
     ['jquery', 'app/ui_super', 'app/view', 'app/model', 'jq/fn.find_closest'],
     function ($, ui_super, view, model) {
+        "use strict";
+
         return function (options) {
             var that = Object.create(ui_super);
 

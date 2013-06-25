@@ -7,6 +7,8 @@ define(
     ['jquery', 'app/ui_super'],
     function ($, ui_super) {
         return function (arr) {
+            "use strict";
+
             var that = Object.create(ui_super);
 
             that.arr = [];
@@ -43,8 +45,12 @@ define(
                 return this.arr.splice(i, l);
             };
 
-            that.each = function (callback) {
-                return this.arr.forEach(callback);
+            that.each = function (callback, ctx) {
+                if (ctx) {
+                    return this.arr.forEach(callback, ctx);
+                } else {
+                    return this.arr.forEach(callback);
+                }
             };
 
             /**

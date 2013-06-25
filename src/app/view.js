@@ -6,6 +6,8 @@
 define(
     ['jquery', 'app/ui_super', 'mustache'],
     function ($, ui_super, mustache) {
+        "use strict";
+
         return function (options) {
             var that = Object.create(ui_super);
 
@@ -19,13 +21,13 @@ define(
              * @abstract
              * @type {Object}
              */
-            that.viewModel = {
+            that.viewModel = $.extend((options && options.viewModel) ? options.viewModel : {}, {
                 _: function () {
                     return function (t) {
                         return t;
                     };
                 }
-            };
+            });
 
             /**
              * @abstract

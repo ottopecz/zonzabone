@@ -6,6 +6,8 @@
 define(
     ['jquery', 'app/ui_super'],
     function ($, ui_super) {
+        "use strict";
+
         return function (options) {
             var that = Object.create(ui_super);
 
@@ -25,9 +27,21 @@ define(
             };
 
             /**
+             * Sets the key with the given value
+             * @param {String} key The key of the wanted value
+             * @param {String} value The value for the key
+             * @return {app.model}
+             */
+            that.set = function (key, value) {
+                this.attrs[key] = value;
+
+                return this;
+            };
+
+            /**
              * Initializes the model
              * @param {String} options Initial attributes
-             * @return {model}
+             * @return {app.model}
              * @abstract
              */
             that.init = function (options) {
