@@ -11,10 +11,9 @@ define(
 
             that.$el = (options && options.el) ? $(options.el) : null;
 
-            that.el = that.$el ? that.$el.get(0) : null;
+            that.el = null;
 
             that.className = (options && options.className) ? options.className : null;
-
 
             /**
              * @abstract
@@ -68,6 +67,8 @@ define(
                 if (this.className) {
                     this.$el.addClass(options.className);
                 }
+
+                this.el = this.$el ? this.$el.get(0) : null;
 
                 return this;
             };
