@@ -47,8 +47,9 @@ define(
              * @abstract
              */
             that.init = function (options) {
-                var key, event, selector, handler, ctx,
-                    modelOpts = $.extend({}, options);
+                var key, match, event, selector, handler, ctx,
+                    modelOpts = $.extend({}, options),
+                    eventSplitter = /^(\S+)\s*(.*)$/;
 
                 this.view = this.view || view({ "el": options.el });
 
@@ -57,16 +58,20 @@ define(
                 delete modelOpts.block;
                 this.model = this.model || model(modelOpts);
 
-
                 if (this.events) {
                     for (key in this.events) {
                         if (this.events.hasOwnProperty(key)) {
-                            event = key.split(" ")[0];
-                            selector = key.split(" ")[1];
+                            match = key.match(eventSplitter);
+                            event = match[1];
+                            selector = match[2];
                             handler = this.events[key].handler;
                             ctx = this.events[key].ctx;
 
-                            $(this.options.el).on(event, selector, handler.bind(ctx));
+                            if (selector === '') {
+                                $(this.options.el).on(event, handler.bind(ctx));
+                            } else {
+                                $(this.options.el).on(event, selector, handler.bind(ctx));
+                            }
                         }
                     }
                 }
