@@ -9,6 +9,10 @@ define(['app/events', 'app/utils', 'jquery'],
 
         var that = utils.shallowClone(events);
 
+        /**
+         * Returns the object being up on the prototype chain
+         * @return {Object}
+         */
         that.getProto = function () {
             return Object.getPrototypeOf(this);
         };
