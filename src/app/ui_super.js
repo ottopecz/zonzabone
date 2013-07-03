@@ -11,7 +11,7 @@ define(['app/events', 'app/utils', 'jquery'],
 
         /**
          * Returns the object being up on the prototype chain
-         * @return {Object}
+         * @returns {Object}
          */
         that.getProto = function () {
             return Object.getPrototypeOf(this);

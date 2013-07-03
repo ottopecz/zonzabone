@@ -44,7 +44,7 @@ define(
             /**
              * Finds an element in the view
              * @param {String} selector Css selector to the target
-             * @return {jQuery.Object}
+             * @returns {jQuery.Object}
              */
             that.$ = function (selector) {
                 return this.$el.find(selector);
@@ -52,7 +52,7 @@ define(
 
             /**
              * Renders the view
-             * @return {Object}
+             * @returns {Object}
              */
             that.render = function () {
                 this.$el.html(mustache.to_html(this.template, this.viewModel, this.partials));
@@ -62,7 +62,7 @@ define(
             /**
              * Initializes the view
              * @param {String} options Initial arguments
-             * @return {view}
+             * @returns {view}
              * @abstract
              */
             that.init = function (options) {

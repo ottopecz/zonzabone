@@ -4,8 +4,8 @@
  */
 /*global define*/
 define(
-    ['jquery', 'app/ui_super'],
-    function ($, ui_super) {
+    ['jquery', 'app/ui_super', 'app/collection', 'app/utils'],
+    function ($, ui_super, collection, utils) {
         "use strict";
 
         return function (options) {
@@ -15,25 +15,25 @@ define(
              * Core of the model
              * @type {Object}
              */
-            that.attrs = {};
+            that.attributes = {};
 
             /**
              * Retrieves the value with the given key
              * @param {String} key The key of the wanted value
-             * @return {*}
+             * @returns {*}
              */
             that.get = function (key) {
-                return this.attrs[key];
+                return this.attributes[key];
             };
 
             /**
              * Sets the key with the given value
              * @param {String} key The key of the wanted value
              * @param {String} value The value for the key
-             * @return {app.model}
+             * @returns {app.model}
              */
             that.set = function (key, value) {
-                this.attrs[key] = value;
+                this.attributes[key] = value;
 
                 return this;
             };
@@ -41,17 +41,19 @@ define(
             /**
              * Initializes the model
              * @param {String} options Initial attributes
-             * @return {app.model}
+             * @returns {app.model}
              * @abstract
              */
             that.init = function (options) {
 
                 for (var key in options) {
                     if (options.hasOwnProperty(key)) {
-                        if (typeof options[key] !== 'function') {
-                            this.attrs[key] = options[key];
-                        } else {
+                        if (typeof options[key] === 'function') {
                             this[key] = options[key];
+                        } else if (Object.prototype.toString.call(options[key]) === '[object Array]' && utils.arrOfObj(options[key])) {
+                            this.attributes[key] = collection(options[key]);
+                        } else {
+                            this.attributes[key] = options[key];
                         }
                     }
                 }
