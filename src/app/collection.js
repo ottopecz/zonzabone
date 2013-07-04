@@ -18,6 +18,15 @@ define(
             that.arr = [];
 
             /**
+             * Resets the collection
+             */
+            that.reset = function () {
+                this.arr = [];
+
+                return this;
+            };
+
+            /**
              * Returns the elements of the collection with given key
              * @param key {String} Key to values
              * @returns {Array.<object>} or {Object}
@@ -41,10 +50,10 @@ define(
              * @param elmnt {Array.<object>} or {Object}
              */
             that.add = function (toAdd) {
-                if (utils.validObj) {
+                if (utils.validObj(toAdd)) {
                     that.arr.push(toAdd);
                 } else if (Object.prototype.toString.call(toAdd) === '[object Array]' && utils.arrOfObj(toAdd)) {
-                    that.arr.concat(toAdd);
+                    that.arr = that.arr.concat(toAdd);
                 }
             };
 
