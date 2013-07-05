@@ -9,7 +9,7 @@ define(
         return function (arr) {
             "use strict";
 
-            var that = Object.create(ui_super);
+            var that = Object.create(ui_super());
 
             /**
              * Core of the collection

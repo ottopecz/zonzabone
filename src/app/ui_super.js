@@ -7,16 +7,18 @@ define(['app/events', 'app/utils', 'jquery'],
     function (events, utils, $) {
         "use strict";
 
-        var that = utils.shallowClone(events);
+        return function () {
+            var that = events();
 
-        /**
-         * Returns the object being up on the prototype chain
-         * @returns {Object}
-         */
-        that.getProto = function () {
-            return Object.getPrototypeOf(this);
+            /**
+             * Returns the object being up on the prototype chain
+             * @returns {Object}
+             */
+            that.getProto = function () {
+                return Object.getPrototypeOf(this);
+            };
+
+            return that;
         };
-
-        return that;
     }
 );

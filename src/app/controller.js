@@ -9,7 +9,7 @@ define(
         "use strict";
 
         return function (options) {
-            var that = Object.create(ui_super);
+            var that = Object.create(ui_super());
 
             that.options = options;
 
