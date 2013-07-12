@@ -15,7 +15,7 @@ define(function () {
                 topicsArr = topicList.split(" "),
                 subscribers,
                 subscriber,
-                len, i, l,
+                len, i, l, k,
                 sum = 0;
 
             for (i = 0, l = topicsArr.length; i < l; i++) {
@@ -24,8 +24,8 @@ define(function () {
                 sum = sum + len;
 
                 if (len) {
-                    while (len--) {
-                        subscriber = subscribers[len];
+                    for (k = 0; k < len; k++) {
+                        subscriber = subscribers[k];
                         // Making sure event fires asynchronously
                         setTimeout(subscriber.func.apply(subscriber.ctx, arguments), 0);
                     }
