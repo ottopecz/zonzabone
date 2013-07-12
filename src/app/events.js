@@ -8,7 +8,10 @@ define(function () {
 
     return function () {
         var that = {},
-            _topics = {};
+            _topics = {},
+            _execHandler = function (subscriber, args) {
+                subscriber.func.apply(subscriber.ctx, args);
+            };
 
         that.trigger = function () {
             var topicList = Array.prototype.shift.call(arguments),
@@ -27,7 +30,7 @@ define(function () {
                     for (k = 0; k < len; k++) {
                         subscriber = subscribers[k];
                         // Making sure event fires asynchronously
-                        setTimeout(subscriber.func.apply(subscriber.ctx, arguments), 0);
+                        setTimeout(_execHandler, 0, subscriber, arguments);
                     }
                 } else if (i === l - 1 && sum === 0) {
                     return false;
