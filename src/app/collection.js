@@ -58,6 +58,24 @@ define(
             };
 
             /**
+             * Removes objects from the collection
+             * @param {String} key Key of the element to be removed
+             * @param {*} value Value of the element to be removed
+             * @returns {Array} The array of the removed elements
+             */
+            that.removeWhere = function (key, value) {
+                var ret = [];
+
+                this.arr.forEach(function (e, i, arr) {
+                    if (e[key] === value) {
+                        ret = ret.concat(arr.splice(i, 1));
+                    }
+                });
+
+                return ret;
+            };
+
+            /**
              * Returns the elements of the collection with given key and value
              * @param key {String} Key to find
              * @param value {*} Value to find
