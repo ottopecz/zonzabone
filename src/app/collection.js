@@ -58,18 +58,32 @@ define(
             };
 
             /**
-             * Removes objects from the collection
-             * @param {String} key Key of the element to be removed
-             * @param {*} value Value of the element to be removed
+             * Removes objects from the collection filtered by parameter
+             * @param {Object} arguments Key value pairs to filter
+             * or
+             * @param {String} arguments[0] Key to filter
+             * @param {*} arguments[1] Value to filter
              * @returns {Array} The array of the removed elements
              */
-            that.removeWhere = function (key, value) {
-                var ret = [];
+            that.removeWhere = function () {
+                var arr = Array.prototype.slice.call(arguments), filters, ret;
 
-                this.arr.forEach(function (e, i, arr) {
-                    if (e[key] === value) {
-                        ret = ret.concat(arr.splice(i, 1));
+                if (arr.length === 1 && utils.validObj(arr[0])) { // When the multiple filters in an obj
+                    filters = arr[0];
+                } else if (arr.length === 2 && typeof arr[0] === 'string') { // When one key value pair passed not wrapped in obj
+                    filters = {};
+                    filters[arr[0]] = arr[1];
+                } else { // Graceful fallback for bad parameters
+                    return ret;
+                }
+
+                ret = this.arr.filter(function (elmnt, i, array) {
+                    for (var key in filters) {
+                        if (filters.hasOwnProperty(key) && (filters[key] !== elmnt[key])) { return false; }
                     }
+
+                    array.splice(i, 1);
+                    return true;
                 });
 
                 return ret;
