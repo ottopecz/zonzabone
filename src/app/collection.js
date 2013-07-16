@@ -68,7 +68,7 @@ define(
             that.removeWhere = function () {
                 var arr = Array.prototype.slice.call(arguments), filters, ret;
 
-                if (arr.length === 1 && utils.validObj(arr[0])) { // When the multiple filters in an obj
+                if (arr.length === 1 && utils.validObj(arr[0])) { // When multiple filters passed in an obj
                     filters = arr[0];
                 } else if (arr.length === 2 && typeof arr[0] === 'string') { // When one key value pair passed not wrapped in obj
                     filters = {};
