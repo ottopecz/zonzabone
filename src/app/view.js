@@ -67,7 +67,7 @@ define(
              */
             that.init = function (options) {
                 if (this.className) {
-                    this.$el.addClass(options.className);
+                    this.$el.addClass(this.className);
                 }
 
                 this.el = this.$el ? this.$el.get(0) : null;

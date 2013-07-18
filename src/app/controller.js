@@ -48,17 +48,25 @@ define(
              */
             that.init = function (options) {
                 var key, match, event, selector, handler, ctx,
-                    modelOpts = $.extend({}, options),
+                    modelOpts,
                     eventSplitter = /^(\S+)\s*(.*)$/;
 
                 this.view = this.view || view({ "el": options.el });
 
-                delete modelOpts.el;
-                delete modelOpts.broker;
-                delete modelOpts.block;
-                this.model = this.model || model(modelOpts);
+                if (!options.model && !this.model) { // When the controller is not initialized with any model
+
+                    modelOpts = $.extend({}, options);
+                    delete modelOpts.el;
+                    delete modelOpts.broker;
+                    delete modelOpts.block;
+
+                    this.model = model(modelOpts);
+                } else if (options.model && !this.model) { // When the controller is initialized with model in init parameters
+                    this.model = options.model;
+                }
 
                 if (this.events) {
+                    $(this.options.el).off();
                     for (key in this.events) {
                         if (this.events.hasOwnProperty(key)) {
                             match = key.match(eventSplitter);

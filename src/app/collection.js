@@ -132,7 +132,7 @@ define(
 
             /**
              * Initializes the collection
-             * @param {String} arr Initial elements
+             * @param {Array} arr Initial elements
              * @returns {collection}
              * @abstract
              */
