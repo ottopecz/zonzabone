@@ -59,6 +59,11 @@ define(
                 return this;
             };
 
+            that.refresh = function (viewModel) {
+                this.viewModel = viewModel;
+                this.render();
+            };
+
             /**
              * Initializes the view
              * @param {String} options Initial arguments
