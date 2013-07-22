@@ -59,8 +59,8 @@ define(
                 return this;
             };
 
-            that.refresh = function (viewModel) {
-                this.viewModel = viewModel;
+            that.refresh = function (data) {
+                this.viewModel = $.extend(this.viewModel, data);
                 this.render();
             };
 

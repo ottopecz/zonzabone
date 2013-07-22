@@ -50,7 +50,7 @@ define(['jquery'], function ($) {
      * @returns {Boolean}
      */
     that.validObj = function (elmnt) {
-        return (typeof elmnt === "object" && Object.prototype.toString.call(elmnt) !== '[object Array]' && elmnt !== null);
+        return (!!elmnt) && (elmnt.constructor === Object);
     };
 
     /**
