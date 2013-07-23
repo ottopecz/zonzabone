@@ -68,5 +68,16 @@ define(['jquery'], function ($) {
         return ret;
     };
 
+    /**
+     * Makes dashed strings camel-case
+     * @param {String} str String to camel-case
+     * @return {String}
+     */
+    that.camelCase = function (str) {
+        return (str||'').toLowerCase().replace(/(\b|-)\w/g, function(m) {
+            return m.toUpperCase().replace(/-/,'');
+        });
+    };
+
     return that;
 });
