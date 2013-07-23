@@ -64,6 +64,12 @@ define(
                 this.render();
             };
 
+            that.teardown = function () {
+                this.$el.remove();
+                delete this.$el;
+                delete this.el;
+            };
+
             /**
              * Initializes the view
              * @param {String} options Initial arguments

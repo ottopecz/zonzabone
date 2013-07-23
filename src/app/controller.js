@@ -42,6 +42,18 @@ define(
                 return this;
             };
 
+            that.teardown = function () {
+                $(this.options.el).off();
+
+                if (this.view.arr && Object.prototype.toString.call(this.view.arr) === '[object Array]' && this.view.arr.length) { // View is a collection of views
+                    this.view.each(function (view) {
+                        view[Object.keys(view)[0]].teardown();
+                    });
+                } else {
+                    this.view.teardown();
+                }
+            };
+
             /**
              * Initializes the controller
              * @abstract
