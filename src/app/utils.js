@@ -74,8 +74,8 @@ define(['jquery'], function ($) {
      * @return {String}
      */
     that.camelCase = function (str) {
-        return (str||'').toLowerCase().replace(/(\b|-)\w/g, function(m) {
-            return m.toUpperCase().replace(/-/,'');
+        return (str || '').toLowerCase().replace(/(\b|-)\w/g, function (m) {
+            return m.toUpperCase().replace(/-/, '');
         });
     };
 
