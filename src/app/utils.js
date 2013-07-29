@@ -45,7 +45,7 @@ define(['jquery'], function ($) {
     };
 
     /**
-     * Returns true if valid object (not array or null)
+     * Returns true if valid object (array, function or null not wanted)
      * @param elmnt {Object} Object to find out about
      * @returns {Boolean}
      */
@@ -54,18 +54,24 @@ define(['jquery'], function ($) {
     };
 
     /**
-     * Returns true if array of valid objects (elements are not array or null)
+     * Returns true if array of valid objects (elements are not array, function or null)
      * @param arr {Array} Array to find out about
      * @returns {Boolean}
      */
     that.arrOfObj = function (arr) {
-        var ret = (Object.prototype.toString.call(arr) === '[object Array]');
+        var i;
 
-        arr.forEach(function (elmnt) {
-            ret = this.validObj(elmnt);
-        }, this);
+        if (Object.prototype.toString.call(arr) !== '[object Array]') { // This is not an array so quit with false
+            return false;
+        } else {
+            for (i = 0; i < arr.length; i++) {
+                if (!this.validObj(arr[i])) {
+                    return false; // This member is not a valid object so quit with false
+                }
+            }
+        }
 
-        return ret;
+        return true;
     };
 
     /**

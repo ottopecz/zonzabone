@@ -50,7 +50,7 @@ define(
                     if (options.hasOwnProperty(key)) {
                         if (typeof options[key] === 'function') {
                             this[key] = options[key];
-                        } else if (Object.prototype.toString.call(options[key]) === '[object Array]' && utils.arrOfObj(options[key])) {
+                        } else if (utils.arrOfObj(options[key])) {
                             this.attributes[key] = collection(options[key]);
                         } else {
                             this.attributes[key] = options[key];
