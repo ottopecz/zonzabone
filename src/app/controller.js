@@ -73,7 +73,7 @@ define(
                     delete modelOpts.block;
 
                     this.model = model(modelOpts);
-                } else if (options.model && !this.model) { // When the controller is initialized with model in init parameters
+                } else if (options.model && !this.model) { // When the controller has a custom model type
                     this.model = options.model;
                 }
 

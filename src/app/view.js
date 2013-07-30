@@ -11,9 +11,9 @@ define(
         return function (options) {
             var that = Object.create(ui_super());
 
-            that.$el = (options && options.el) ? $(options.el) : null;
+            that.$el = (options && options.$el) ? options.$el : (options && options.el) ? $(options.el) : null;
 
-            that.el = null;
+            that.el = (options && options.el) ? options.el : (options && options.$el) ? options.$el.get(0) : null;
 
             that.className = (options && options.className) ? options.className : null;
 
@@ -66,8 +66,8 @@ define(
 
             that.teardown = function () {
                 this.$el.remove();
-                delete this.$el;
-                delete this.el;
+                delete this.$el; // For proper garbage collection
+                delete this.el; // For proper garbage collection
             };
 
             /**
@@ -81,7 +81,19 @@ define(
                     this.$el.addClass(this.className);
                 }
 
-                this.el = this.$el ? this.$el.get(0) : null;
+                this.el = this.el || this.$el ? this.$el.get(0) : null;
+
+                this.$el = this.$el || this.el ? $(this.el) : null;
+
+                // When this is overridden in the sub type we need to do extend again to get _
+                // When there is no sub type we just repeat the action from above
+                this.viewModel = $.extend(this.viewModel, {
+                    _: function () {
+                        return function (t) {
+                            return t;
+                        };
+                    }
+                });
 
                 return this;
             };

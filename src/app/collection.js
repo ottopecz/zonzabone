@@ -15,7 +15,7 @@ define(
              * Core of the collection
              * @type {Array}
              */
-            that.arr = [];
+            that.arr = arr || [];
 
             /**
              * Resets the collection
@@ -132,17 +132,10 @@ define(
 
             /**
              * Initializes the collection
-             * @param {Array} arr Initial elements
              * @returns {collection}
              * @abstract
              */
             that.init = function (arr) {
-
-                if (arr) {
-                    arr.forEach(function (elmnt) {
-                        this.arr.push(elmnt);
-                    }, this);
-                }
 
                 return this;
             };

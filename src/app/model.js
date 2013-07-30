@@ -48,11 +48,11 @@ define(
 
                 for (var key in options) {
                     if (options.hasOwnProperty(key)) {
-                        if (typeof options[key] === 'function') {
+                        if (typeof options[key] === 'function') { // Option is a function
                             this[key] = options[key];
-                        } else if (utils.arrOfObj(options[key])) {
+                        } else if (utils.arrOfObj(options[key])) { // Option is an array populated by valid objects
                             this.attributes[key] = collection(options[key]);
-                        } else {
+                        } else { // Fallback
                             this.attributes[key] = options[key];
                         }
                     }
