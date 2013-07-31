@@ -77,15 +77,15 @@ define(
              * @abstract
              */
             that.init = function (options) {
-                if (this.className) {
-                    this.$el.addClass(this.className);
-                }
-
                 this.el = this.el || this.$el ? this.$el.get(0) : null;
 
                 this.$el = this.$el || this.el ? $(this.el) : null;
 
-                // When this is overridden in the sub type we need to do extend again to get _
+                if (this.className) {
+                    this.$el.addClass(this.className);
+                }
+
+                // When this is overridden in the sub type we need to do extend again to get _ function
                 // When there is no sub type we just repeat the action from above
                 this.viewModel = $.extend(this.viewModel, {
                     _: function () {
