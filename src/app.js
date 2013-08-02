@@ -12,9 +12,10 @@ define(
         'app/model',
         'app/view',
         'app/controller',
-        'app/collection'
+        'app/collection',
+        'app/history'
     ],
-    function ($, ui_super, events, utils, model, view, controller, collection) {
+    function ($, ui_super, events, utils, model, view, controller, collection, history) {
         "use strict";
 
         return {
@@ -24,7 +25,8 @@ define(
             view: view,
             model: model,
             controller: controller,
-            collection: collection
+            collection: collection,
+            history: history
         };
     }
 );
