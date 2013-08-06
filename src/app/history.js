@@ -4,46 +4,43 @@ define(function (require) {
 
     var $ = require('jquery');
 
-    return function(options) {
+	console.log('history.js');
 
-    	console.log('history.js');
+	var that = {},
 
-    	var that = {},
+	_popstateHandler = null,
 
-    	_popstateHandler = null,
+	_addeventListener = function(event, popstateHandler) {
 
-    	_addeventListener = function(event, popstateHandler) {
+		window.addEventListener(event, popstateHandler);
+	};
 
-    		window.addEventListener(event, popstateHandler);
-    	};
+	/**
+	 * Changes updates browser location bar and fires callback
+	 */
+	that.push = function(url, state, popstateHandler){
 
-    	/**
-		 * Changes updates browser location bar and fires callback
-		 */
-    	that.push = function(url, state, popstateHandler){
+		((history && history.pushState) ? history.pushState : $.noop)((state || null), null, url);
 
-    		((history && history.pushState) ? history.pushState : $.noop)((state || null), null, url);
+    	_popstateHandler = popstateHandler;
+	};
 
-	    	_popstateHandler = popstateHandler;
-    	};
+	/**
+	 * Initializes the history module
+	 * @returns {history module}
+	 */
+	that.init = function(options) {
 
-		/**
-		 * Initializes the history module
-		 * @returns {history module}
-		 */
-    	that.init = function(options) {
+		console.log('history.init()');
 
-    		console.log('history.init()');
+		_addeventListener("popstate", (function(e) {
 
-    		_addeventListener("popstate", (function(e) {
+			(_popstateHandler ? _popstateHandler : $.noop)(e);
 
-    			(_popstateHandler ? _popstateHandler : $.noop)(e);
+		}).bind(that));
 
-    		}).bind(that));
+		return this;
+	};
 
-    		return this;
-    	};
-
-    	return that;
-    };
+	return that;
 });
