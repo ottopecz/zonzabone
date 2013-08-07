@@ -11,7 +11,6 @@ define(function (require) {
 	_popstateHandler = null,
 
 	_addeventListener = function(event, popstateHandler) {
-
 		window.addEventListener(event, popstateHandler);
 	};
 
@@ -19,9 +18,7 @@ define(function (require) {
 	 * Changes updates browser location bar and fires callback
 	 */
 	that.push = function(url, state, popstateHandler){
-
-		((history && history.pushState) ? history.pushState : $.noop)((state || null), null, url);
-
+		window.history.pushState(state, null, url);
     	_popstateHandler = popstateHandler;
 	};
 
@@ -30,15 +27,9 @@ define(function (require) {
 	 * @returns {history module}
 	 */
 	that.init = function(options) {
-
-		console.log('history.init()');
-
 		_addeventListener("popstate", (function(e) {
-
-			(_popstateHandler ? _popstateHandler : $.noop)(e);
-
+			_popstateHandler(e);
 		}).bind(that));
-
 		return this;
 	};
 
