@@ -30,7 +30,7 @@ define(
              * Changes updates browser location bar and fires callback
              * @public
              */
-            that.push = function(url, state){
+            that.push = function (url, state) {
                 window.history.pushState(state, null, url);
             };
 
