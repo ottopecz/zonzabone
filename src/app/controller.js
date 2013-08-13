@@ -4,15 +4,43 @@
  */
 /*global define, require*/
 define(
-    ['jquery', 'app/ui_super', 'app/view', 'app/model', 'jq/fn.find_closest'],
-    function ($, ui_super, view, model) {
+    ['jquery', 'app/ui_super', 'app/utils', 'app/view', 'app/model', 'jq/fn.find_closest'],
+    function ($, ui_super, utils, view, model) {
         "use strict";
 
         return function (options) {
+            /** ------- ---- */
+            /** Private area */
+            /** ------- ---- */
+
             var that = Object.create(ui_super());
 
+            /** ------ ---- */
+            /** Public area */
+            /** ------ ---- */
+
+            /**
+             * The options that the controller is created with
+             * @type {Object}
+             * @public
+             */
             that.options = options;
 
+            /**
+             * Changes updates browser location bar and fires callback
+             * @public
+             */
+            that.push = function(url, state){
+                window.history.pushState(state, null, url);
+            };
+
+            /**
+             * Loads the sub blocks in the area of this block (Should be used only if this is a block controller)
+             * @param {app.events} broker Reference to the global event dispatcher
+             * @param parent {app.controller} Reference to the parent controller
+             * @return {app.controller}
+             * @public
+             */
             that.loadBlocks = function (broker, parent) {
                 var $el = parent ? $(parent.options.el) : $(document);
 
@@ -42,6 +70,10 @@ define(
                 return this;
             };
 
+            /**
+             * Tears down the controller and its views
+             * @public
+             */
             that.teardown = function () {
                 $(this.options.el).off();
 
@@ -63,20 +95,22 @@ define(
                     modelOpts,
                     eventSplitter = /^(\S+)\s*(.*)$/;
 
+                // Creating basic view if that's not defined in the sub factory
                 this.view = this.view || view({ "el": options.el });
 
-                if (!options.model && !this.model) { // When the controller is not initialized with any model
-
+                // Creating a model for the controller if that's not defined in the sub factory
+                if (!options.model && !this.model) { // When the controller is not initialized with any model (Should happen if the sub factory produces block controllers)
                     modelOpts = $.extend({}, options);
                     delete modelOpts.el;
                     delete modelOpts.broker;
                     delete modelOpts.block;
 
                     this.model = model(modelOpts);
-                } else if (options.model && !this.model) { // When the controller has a custom model type
+                } else if (options.model && !this.model) { // When the controller is initialized with a model
                     this.model = options.model;
                 }
 
+                // Delegating browser events. They are supposed to be declared in the sub factory
                 if (this.events) {
                     $(this.options.el).off();
                     for (key in this.events) {
