@@ -22,7 +22,7 @@ define(
              * @type {Object}
              */
             that.viewModel = $.extend((options && options.viewModel) ? options.viewModel : {}, {
-                _: function () {
+                i18n: function () {
                     return function (t) {
                         return t;
                     };

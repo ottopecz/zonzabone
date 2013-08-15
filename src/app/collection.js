@@ -132,6 +132,7 @@ define(
 
             /**
              * Initializes the collection
+             * @param {Array.<object>} arr The initial list of objects
              * @returns {collection}
              * @abstract
              */
