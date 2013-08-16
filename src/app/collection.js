@@ -51,9 +51,9 @@ define(
              */
             that.add = function (toAdd) {
                 if (utils.validObj(toAdd)) {
-                    that.arr.push(toAdd);
+                    this.arr.push(toAdd);
                 } else if (utils.arrOfObj(toAdd)) {
-                    that.arr = that.arr.concat(toAdd);
+                    this.arr = this.arr.concat(toAdd);
                 }
             };
 
