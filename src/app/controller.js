@@ -4,9 +4,25 @@
  */
 /*global define, require*/
 define(
-    ['jquery', 'app/ui_super', 'app/utils', 'app/view', 'app/model', 'jq/fn.find_closest'],
+    ['jquery', 'app/ui_super', 'app/utils', 'app/view', 'app/model'],
     function ($, ui_super, utils, view, model) {
         "use strict";
+
+        $.fn.extend({
+            findClosest: function (sel) {
+                var $ret = $(),
+                    $parent = this.parent(sel),
+                    $closest = this.parent().closest(sel);
+
+                if ($parent.length) {
+                    $ret = $parent;
+                } else if ($closest.length) {
+                    $ret = $closest;
+                }
+
+                return $ret;
+            }
+        });
 
         return function (options) {
             /** ------- ---- */

@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "version": "0.0.3",
+  "main": "build/app.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

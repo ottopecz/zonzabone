@@ -1,10 +1,10 @@
 ({
-    baseUrl: "../source/js/",
+    baseUrl: "src",
     paths: {
         "jquery": "empty:",
         "mustache": "empty:"
     },
-    name: "app/app",
-    out: "../build/js/bundle/app.js",
+    name: "app",
+    out: "build/app.js",
     optimize: "none"
 })
