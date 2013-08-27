@@ -85,5 +85,28 @@ define(['jquery'], function ($) {
         });
     };
 
+    /**
+     * Get new array of all items in a not in b
+     * @param [{Object}] a Array of objects to filter
+     * @param [{Object}] b Array of objects to filter from A
+     * @param Function func Comparator function to determine object match
+     * @returns Array
+     * @private
+     */
+    that.without = function (a, b, func) {
+        var x, y, l, m, c = [];
+        outer:
+        for (x = 0, l = a.length; x < l; x++) {
+            inner:
+            for (y = 0, m = b.length; y < m; y++) {
+                if (func(a[x], b[y])) {
+                    continue outer;
+                }
+            }
+            c.push(a[x]);
+        }
+        return c;
+    };
+
     return that;
 });
