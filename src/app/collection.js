@@ -131,6 +131,19 @@ define(
             };
 
             /**
+             * Get new array of all items in this collection and not in b
+             * Relative complement of B in A
+             * See http://en.wikipedia.org/wiki/Naive_set_theory#Unions.2C_intersections.2C_and_relative_complements
+             * @param {Array.<object>} b collection, containing objects to filter from collection
+             * @param {Function} func Comparator function to determine object match
+             * @returns {Array.<object>}
+             */
+            that.without = function (b, func) {
+
+                return utils.without(this.arr, b.arr, func);
+            };
+
+            /**
              * Initializes the collection
              * @param {Array.<object>} arr The initial list of objects
              * @returns {collection}

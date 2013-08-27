@@ -86,12 +86,13 @@ define(['jquery'], function ($) {
     };
 
     /**
-     * Get new array of all items in a not in b
-     * @param [{Object}] a Array of objects to filter
-     * @param [{Object}] b Array of objects to filter from A
-     * @param Function func Comparator function to determine object match
-     * @returns Array
-     * @private
+     * Get new array of all items in a and not in b
+     * Relative complement of B in A
+     * See http://en.wikipedia.org/wiki/Naive_set_theory#Unions.2C_intersections.2C_and_relative_complements
+     * @param {Array.<object>} a Array of objects to filter
+     * @param {Array.<object>} b Array of objects to filter from A
+     * @param {Function} func Comparator function to determine object match
+     * @returns {Array.<object>}
      */
     that.without = function (a, b, func) {
         var x, y, l, m, c = [];
