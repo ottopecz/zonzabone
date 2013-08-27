@@ -1,7 +1,7 @@
 {
   "name": "app",
-  "version": "0.0.3",
-  "main": "build/app.js",
+  "version": "0.0.5",
+  "main": "src/app.js",
   "ignore": [
     "**/.*",
     "node_modules",
