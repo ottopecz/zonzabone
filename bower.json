@@ -1,6 +1,5 @@
 {
   "name": "app",
-  "version": "0.0.5",
   "main": "src/app.js",
   "ignore": [
     "**/.*",
