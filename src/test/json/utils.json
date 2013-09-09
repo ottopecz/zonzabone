@@ -1,0 +1,47 @@
+{
+    "without": {
+
+        "a": [
+            {
+                "shape": "square",
+                "colour": "pink",
+                "sides": 4,
+                "name": "jeremiah",
+                "weight": 70
+            },
+            {
+                "shape": "circle",
+                "colour": "red",
+                "sides": 1,
+                "name": "henrietta",
+                "weight": 80
+            },
+            {
+                "shape": "triangle",
+                "colour": "green",
+                "sides": 3,
+                "name": "joan",
+                "weight": 80
+            }
+        ],
+        "b": [
+            {
+                "shape": "dodecahedron",
+                "colour": "pink",
+                "sides": 10,
+                "name": "kevin",
+                "weight": 70
+            },
+            {
+                "shape": "pentagon",
+                "colour": "green",
+                "sides": 5,
+                "name": "henrietta",
+                "weight": 80
+            }
+        ],
+        "c": [
+
+        ]
+    }
+}

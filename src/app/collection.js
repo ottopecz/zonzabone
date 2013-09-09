@@ -46,6 +46,20 @@ define(
             };
 
             /**
+             * Sets the given key value pair on all the elements in the collection
+             * @param {String} key The property to set
+             * @param {String} value The value to which the property has to set
+             * @return {app.collection}
+             */
+            that.set = function (key, value) {
+                this.arr.forEach(function (e) {
+                    e[key] = value;
+                });
+
+                return this;
+            };
+
+            /**
              * Add new element(s) to the collection
              * @param elmnt {Array.<object>} or {Object}
              */

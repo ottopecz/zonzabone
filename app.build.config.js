@@ -5,6 +5,6 @@
         "mustache": "empty:"
     },
     name: "app",
-    out: "build/app.js",
+    out: "app.js",
     optimize: "none"
 })
