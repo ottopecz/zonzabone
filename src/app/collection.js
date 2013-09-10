@@ -9,32 +9,57 @@ define(
         return function (arr) {
             "use strict";
 
-            var that = Object.create(ui_super());
+            var that = Object.create(ui_super()),
 
             /**
              * Core of the collection
              * @type {Array}
+             * @public
              */
-            that.arr = arr || [];
+            _arr = arr || [];
 
             /**
              * Resets the collection
+             * @param {Array} arr The new core of the collection
+             * @returns {collection}
+             * @public
              */
-            that.reset = function () {
-                this.arr = [];
+            that.reset = function (arr) {
+                _arr = arr || [];
 
                 return this;
+            };
+
+            /**
+             * Returns the length of the collection
+             * @returns {Number} the length of the collection
+             * @public
+             */
+            that.length = function () {
+
+                return _arr.length;
+            };
+
+            /**
+             * Returns the core array of the collection
+             * @return {Array}
+             * @public
+             */
+            that.core = function () {
+
+                return _arr;
             };
 
             /**
              * Returns the element/s of the collection with given key
              * @param key {String} Key to values
              * @returns {Array.<object>} or {Object}
+             * @public
              */
             that.get = function (key) {
                 var ret = [];
 
-                this.arr.forEach(function (e) {
+                _arr.forEach(function (e) {
                     if (e[key]) {
                         ret.push(e[key]);
                     }
@@ -49,10 +74,11 @@ define(
              * Sets the given key value pair on all the elements in the collection
              * @param {String} key The property to set
              * @param {String} value The value to which the property has to set
-             * @return {app.collection}
+             * @return {collection}
+             * @public
              */
             that.set = function (key, value) {
-                this.arr.forEach(function (e) {
+                _arr.forEach(function (e) {
                     e[key] = value;
                 });
 
@@ -62,22 +88,24 @@ define(
             /**
              * Add new element(s) to the collection
              * @param elmnt {Array.<object>} or {Object}
+             * @public
              */
             that.add = function (toAdd) {
                 if (utils.validObj(toAdd)) {
-                    this.arr.push(toAdd);
+                    _arr.push(toAdd);
                 } else if (utils.arrOfObj(toAdd)) {
-                    this.arr = this.arr.concat(toAdd);
+                    _arr = _arr.concat(toAdd);
                 }
             };
 
             /**
-             * Removes objects from the collection filtered by parameter
+             * Removes objects from the collection filtered by parameter/s
              * @param {Object} arguments Key value pairs to filter
              * or
              * @param {String} arguments[0] Key to filter
              * @param {*} arguments[1] Value to filter
              * @returns {Array} The array of the removed elements
+             * @public
              */
             that.removeWhere = function () {
                 var arr = Array.prototype.slice.call(arguments), filters, ret;
@@ -91,7 +119,7 @@ define(
                     return ret;
                 }
 
-                ret = this.arr.filter(function (elmnt, i, array) {
+                ret = _arr.filter(function (elmnt, i, array) {
                     for (var key in filters) {
                         if (filters.hasOwnProperty(key) && (filters[key] !== elmnt[key])) { return false; }
                     }
@@ -108,11 +136,12 @@ define(
              * @param key {String} Key to find
              * @param value {*} Value to find
              * @returns {Array.<object>}
+             * @public
              */
             that.getWhere = function (key, value) {
                 var ret = [];
 
-                this.arr.forEach(function (e) {
+                _arr.forEach(function (e) {
                     if (e[key] === value) {
                         ret.push(e);
                     }
@@ -122,53 +151,29 @@ define(
             };
 
             /**
-             * Proxies to Array.splice
-             * @param i {Number} index to splice from
-             * @param l {Number} length to splice with
-             * @return {Array}
-             */
-            that.splice = function (i, l) {
-                return this.arr.splice(i, l);
-            };
-
-            /**
-             * Proxies to Array.forEach
-             * @param callback {Function} Callback for forEach
-             * @param ctx {Object} Context for callback
-             */
-            that.each = function (callback, ctx) {
-                if (ctx) {
-                    this.arr.forEach(callback, ctx);
-                } else {
-                    this.arr.forEach(callback);
-                }
-            };
-
-            /**
              * Get new array of all items in this collection and not in b
              * Relative complement of B in A
              * See http://en.wikipedia.org/wiki/Naive_set_theory#Unions.2C_intersections.2C_and_relative_complements
              * @param {Array.<object>} b collection, containing objects to filter from collection
              * @param {Function} func Comparator function to determine object match
              * @returns {Array.<object>}
+             * @public
              */
             that.without = function (b, func) {
 
-                return utils.without(this.arr, b.arr, func);
+                return utils.without(_arr, b.core(), func);
             };
 
             /**
-             * Initializes the collection
-             * @param {Array.<object>} arr The initial list of objects
-             * @returns {collection}
-             * @abstract
+             * Proxying to the native methods
              */
-            that.init = function (arr) {
+            ['forEach', 'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'filter', 'map'].forEach(function(name) {
+                that[name] = function() {
+                   return Array.prototype[name].apply(_arr, arguments);
+                };
+            }, that);
 
-                return this;
-            };
-
-            return that.init(arr);
+            return that;
         };
     }
 );

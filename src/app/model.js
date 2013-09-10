@@ -9,13 +9,13 @@ define(
         "use strict";
 
         return function (options) {
-            var that = Object.create(ui_super());
+            var that = Object.create(ui_super()),
 
             /**
              * Core of the model
              * @type {Object}
              */
-            that.attributes = {};
+            _attributes = {};
 
             /**
              * Retrieves the value with the given key
@@ -23,7 +23,7 @@ define(
              * @returns {*}
              */
             that.get = function (key) {
-                return this.attributes[key];
+                return _attributes[key];
             };
 
             /**
@@ -33,9 +33,18 @@ define(
              * @returns {app.model}
              */
             that.set = function (key, value) {
-                this.attributes[key] = value;
+                _attributes[key] = value;
 
                 return this;
+            };
+
+            /**
+             * Reurns the core of the model
+             * @return {Object}
+             * @public
+             */
+            that.core = function () {
+                return _attributes;
             };
 
             /**
@@ -51,9 +60,9 @@ define(
                         if (typeof options[key] === 'function') { // Option is a function
                             this[key] = options[key];
                         } else if (utils.arrOfObj(options[key])) { // Option is an array populated by valid objects
-                            this.attributes[key] = collection(options[key]);
+                            _attributes[key] = collection(options[key]);
                         } else { // Fallback
-                            this.attributes[key] = options[key];
+                            _attributes[key] = options[key];
                         }
                     }
                 }
