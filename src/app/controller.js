@@ -79,6 +79,7 @@ define(
                                 options.broker = Object.create(ui_super);
                             }
                             var block = block_contr(options);
+                            options.broker.trigger('base:block_loaded');
                         });
                     }
                 });
