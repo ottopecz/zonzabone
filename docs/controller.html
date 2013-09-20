@@ -92,12 +92,30 @@
 <article id="push">
     <h2>push</h2>
     <p>This pushes the browser history. - Implemented because every controller must be able to do this</p>
+    <h3>params</h3>
+    <ul>
+        <li><strong>url:</strong> The state object is a JavaScript object which is associated with the new history entry created by pushState().
+            Whenever the user navigates to the new state, a popstate event is fired, and the state property of the event contains a copy of the history entry's state object.</li>
+        <li><strong>state:</strong> The new history entry's URL is given by this parameter. Note that the browser won't attempt to load this URL after a call to pushState(),
+            but it might attempt to load the URL later, for instance after the user restarts her browser. The new URL does not need to be absolute; if it's relative,
+            it's resolved relative to the current URL. The new URL must be of the same origin as the current URL; otherwise, pushState() will throw an exception.
+            This parameter is optional; if it isn't specified, it's set to the document's current URL.</li>
+    </ul>
+    <h3>example usage</h3>
+    <code>contr.push("/foo/bar/" { "someData": "someData" })</code>
 </article>
 <article id="options">
     <h2>options</h2>
+    <p>The initial options with that the controller factory was executed.</p>
+    <h3>type</h3>
+    <p>Object</p>
 </article>
 <article id="teardown">
     <h2>teardown</h2>
+    <p>Undelegates the browser events and tears down the views of the controller. Unfortunately only collection of views can be properly destroyed.
+        I.e. It will fail on a view with sub-views.</p>
+    <h3>Example usage</h3>
+    <code>contr.tearDown()</code>
 </article>
 </body>
 </html>
