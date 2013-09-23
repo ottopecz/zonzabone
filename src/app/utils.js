@@ -1,9 +1,9 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 17/06/2013
+ * @require window.jQuery
  */
-/*global define*/
-define(['jquery'], function ($) {
+(function ($, Zonzabone) {
     "use strict";
 
     var that = {};
@@ -109,5 +109,5 @@ define(['jquery'], function ($) {
         return c;
     };
 
-    return that;
-});
+    Zonzabone.utils = that;
+})(window.jQuery, window.Zonzabone);

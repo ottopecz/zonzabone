@@ -1,10 +1,15 @@
 ({
-    baseUrl: "src",
-    paths: {
-        "jquery": "empty:",
-        "mustache": "empty:"
-    },
-    name: "app",
-    out: "app.js",
-    optimize: "none"
+    "baseUrl": "src/app",
+    "name": "zonzabone",
+    "include": [
+        "utils",
+        "events",
+        "ui_super",
+        "collection",
+        "model",
+        "view",
+        "controller"
+    ],
+    "out": "zonzabone.js",
+    "optimize": "none"
 })
