@@ -524,8 +524,18 @@ define("model", function(){});
  * @require Zonzabone.ui_super
  */
 /*global define, require*/
-(function ($, mustache, Zonzabone) {
+(function ($, Zonzabone) {
     
+
+    var mustache;
+
+    if (typeof define === "function" && define.amd) {
+        require(['mustache'], function (m) {
+            mustache = m;
+        });
+    } else {
+        mustache = window.Mustache;
+    }
 
     Zonzabone.view = function (options) {
         var that = Object.create(Zonzabone.ui_super());
@@ -645,7 +655,7 @@ define("model", function(){});
 
         return that.init();
     };
-})(window.jQuery, (typeof define === "function" && define.amd) ? require(['mustache'], function (mustache) { console.log(mustache); return mustache; }) : window.Mustache, window.Zonzabone);
+})(window.jQuery, window.Zonzabone);
 define("view", function(){});
 
 /**
