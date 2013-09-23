@@ -11,18 +11,33 @@ define(
         return function (options) {
             var that = Object.create(ui_super());
 
+            /**
+             * jQuery wrapped dom element of the view
+             * @type {jQuery}
+             * @public
+             */
             that.$el = (options && options.$el) ? options.$el : (options && options.el) ? $(options.el) : null;
 
+            /**
+             * The dom element of the view
+             * @type {dom}
+             */
             that.el = (options && options.el) ? options.el : (options && options.$el) ? options.$el.get(0) : null;
 
+            /**
+             * Css classes for the dom element of the view
+             * @type {String}
+             * @public
+             */
             that.className = (options && options.className) ? options.className : null;
 
             /**
-             * @abstract
+             * The viewModel of the view
              * @type {Object}
+             * @public
              */
             that.viewModel = $.extend((options && options.viewModel) ? options.viewModel : {}, {
-                i18n: function () {
+                "i18n": function () {
                     return function (t) {
                         return t;
                     };
@@ -30,21 +45,23 @@ define(
             });
 
             /**
+             * Template of the view
              * @abstract
              * @type {String}
              */
             that.template = "";
 
             /**
-             * @abstract
-             * @type {Object}
+             * Partial templates of the view
+             * @type {Object.<string>}
              */
             that.partials = {};
 
             /**
              * Finds an element in the view
              * @param {String} selector Css selector to the target
-             * @returns {jQuery.Object}
+             * @returns {jQuery}
+             * @public
              */
             that.$ = function (selector) {
                 return this.$el.find(selector);
@@ -52,18 +69,28 @@ define(
 
             /**
              * Renders the view
-             * @returns {Object}
+             * @returns {view}
+             * @public
              */
             that.render = function () {
                 this.$el.html(mustache.to_html(this.template, this.viewModel, this.partials));
                 return this;
             };
 
+            /**
+             * Extends the vie with the passed object and re-renders the view
+             * @param data {Object} New data to extend the viewModel
+             * @public
+             */
             that.refresh = function (data) {
                 this.viewModel = $.extend(this.viewModel, data);
                 this.render();
             };
 
+            /**
+             * Tears down the view
+             * @public
+             */
             that.teardown = function () {
                 this.$el.remove();
                 delete this.$el; // For proper garbage collection
@@ -72,23 +99,22 @@ define(
 
             /**
              * Initializes the view
-             * @param {String} options Initial arguments
              * @returns {view}
-             * @abstract
+             * @public
              */
-            that.init = function (options) {
-                this.el = this.el || this.$el ? this.$el.get(0) : null;
+            that.init = function () {
+                this.el = this.el || this.$el ? this.$el.get(0) : null; // When the dom of the view is defined in the sub type
 
-                this.$el = this.$el || this.el ? $(this.el) : null;
+                this.$el = this.$el || this.el ? $(this.el) : null; // When the dom of the view is defined in the sub type
 
-                if (this.className) {
+                if (this.className) { // When className is specified in the sub type
                     this.$el.addClass(this.className);
                 }
 
-                // When this is overridden in the sub type we need to do extend again to get _ function
+                // When the view is overridden in the sub type we need to do extend again to get i18n function
                 // When there is no sub type we just repeat the action from above
                 this.viewModel = $.extend(this.viewModel, {
-                    _: function () {
+                    "i18n": function () {
                         return function (t) {
                             return t;
                         };
@@ -98,7 +124,7 @@ define(
                 return this;
             };
 
-            return that.init(options);
+            return that.init();
         };
     }
 );
