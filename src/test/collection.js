@@ -6,8 +6,8 @@
 define(function (require) {
     "use strict";
 
-    var collection = require('app/collection'),
-        bdd = require('bdd');
+    var zonzabone   = require('zonzabone'),
+        bdd         = require('bdd');
 
     module('Collection Tests');
 
@@ -28,7 +28,7 @@ define(function (require) {
     });
 
     var collInsWithMultipleElmnts = function () {
-            return collection([{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}, {"key3": "value3", "keyCommon": "valueCommon"}]);
+            return zonzabone.collection([{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}, {"key3": "value3", "keyCommon": "valueCommon"}]);
         },
         removeWithParsAsKeyVal = function (key, value) {
             bdd.given.removeWhere(key, value);
