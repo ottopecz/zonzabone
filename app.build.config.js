@@ -1,5 +1,8 @@
 ({
     "baseUrl": "src/app",
+    paths: {
+        "mustache": "empty:"
+    },
     "name": "zonzabone",
     "include": [
         "utils",

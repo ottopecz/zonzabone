@@ -645,7 +645,7 @@ define("model", function(){});
 
         return that.init();
     };
-})(window.jQuery, (typeof define === "function" && define.amd) ? require('mustache') : window.Mustache, window.Zonzabone);
+})(window.jQuery, (typeof define === "function" && define.amd) ? require(['mustache'], function (mustache) { console.log(mustache); return mustache; }) : window.Mustache, window.Zonzabone);
 define("view", function(){});
 
 /**
