@@ -101,4 +101,4 @@
 
         return that;
     };
-})(window.Zonzabone);
+}(window.Zonzabone));

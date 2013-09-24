@@ -9,6 +9,6 @@
     window.Zonzabone = {};
 
     if (typeof define === "function" && define.amd) {
-        define( "zonzabone", [], function () { return window.Zonzabone; } );
+        define("zonzabone", [], function () { return window.Zonzabone; });
     }
-})(window);
+}(window));

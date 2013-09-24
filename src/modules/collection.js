@@ -167,12 +167,12 @@
         /**
          * Proxying to the native methods
          */
-        ['forEach', 'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'filter', 'map'].forEach(function(name) {
-            that[name] = function() {
-               return Array.prototype[name].apply(_arr, arguments);
+        ['forEach', 'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'filter', 'map'].forEach(function (name) {
+            that[name] = function () {
+                return Array.prototype[name].apply(_arr, arguments);
             };
         }, that);
 
         return that;
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));

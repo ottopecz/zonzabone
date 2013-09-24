@@ -137,4 +137,4 @@
 
         return that.init();
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));

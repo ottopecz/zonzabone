@@ -110,4 +110,4 @@
     };
 
     Zonzabone.utils = that;
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));

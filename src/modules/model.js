@@ -73,4 +73,4 @@
 
         return that.init(options);
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));
