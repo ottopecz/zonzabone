@@ -10,9 +10,9 @@
     window.Zonzabone = {};
 
     if (typeof define === "function" && define.amd) {
-        define( "zonzabone", [], function () { return window.Zonzabone; } );
+        define("zonzabone", [], function () { return window.Zonzabone; });
     }
-})(window);
+}(window));
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 17/06/2013
@@ -125,7 +125,7 @@
     };
 
     Zonzabone.utils = that;
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));
 define("utils", function(){});
 
 /**
@@ -231,7 +231,7 @@ define("utils", function(){});
 
         return that;
     };
-})(window.Zonzabone);
+}(window.Zonzabone));
 define("events", function(){});
 
 /**
@@ -255,7 +255,7 @@ define("events", function(){});
 
         return that;
     };
-})(window.Zonzabone);
+}(window.Zonzabone));
 define("ui_super", function(){});
 
 /**
@@ -427,15 +427,15 @@ define("ui_super", function(){});
         /**
          * Proxying to the native methods
          */
-        ['forEach', 'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'filter', 'map'].forEach(function(name) {
-            that[name] = function() {
-               return Array.prototype[name].apply(_arr, arguments);
+        ['forEach', 'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'filter', 'map'].forEach(function (name) {
+            that[name] = function () {
+                return Array.prototype[name].apply(_arr, arguments);
             };
         }, that);
 
         return that;
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));
 define("collection", function(){});
 
 /**
@@ -513,7 +513,7 @@ define("collection", function(){});
 
         return that.init(options);
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));
 define("model", function(){});
 
 /**
@@ -655,7 +655,7 @@ define("model", function(){});
 
         return that.init();
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));
 define("view", function(){});
 
 /**
@@ -812,5 +812,5 @@ define("view", function(){});
 
         return that;
     };
-})(window.jQuery, window.Zonzabone);
+}(window.jQuery, window.Zonzabone));
 define("controller", function(){});
