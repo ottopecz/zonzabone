@@ -5,7 +5,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "src/test"
+    "src/test",
     "app.build.config.js"
   ]
 }
