@@ -19,95 +19,127 @@
     </ul>
 </nav>
 <h1>Collection</h1>
+<p>A collection is a list of native javascript objects</p>
 <article>
     <h2>reset (method)</h2>
-    <p></p>
+    <code>collection.reset(arr)</code>
+    <p>Resets the core of the collection either to an empty array or the passed array</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>arr: </strong> !!!optional!!! The new core array of the collection. If it's left undefined the new core will be an empty array</li>
     </ul>
+    <h3>returns</h3>
+    <p>The context collection</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>coll.reset([{"k1": "v1"}, {"k2": "v2"}])</code>
 </article>
 <article>
     <h2>length (property)</h2>
-    <p></p>
-    <h3>params</h3>
-    <ul>
-        <li></li>
-    </ul>
+    <code>collection.length</code>
+    <p>The length (number of elements) of the collection. This is a proxy to the native length property of the core array.</p>
+    <h3>type</h3>
+    <p>Number</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>var l = coll.length;</code>
 </article>
 <article>
     <h2>core (method)</h2>
-    <p></p>
+    <code>collection.core()</code>
+    <p>Returns the core array of the collection</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li>No argument needed</li>
     </ul>
+    <h3>returns</h3>
+    <p>An core array of the collection</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>var arr = coll.core()</code>
 </article>
 <article>
     <h2>get (method)</h2>
-    <p></p>
+    <code>collection.get(key)</code>
+    <p>Returns all the element with the given key</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>key: </strong>The common key of the elements we want to retrieve.</li>
     </ul>
+    <h3>returns</h3>
+    <p>Either an array of the hits or - if there is only one result - an object</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>var ret = coll.get("robinTheBirdy")</code>
 </article>
 <article>
     <h2>set (method)</h2>
-    <p></p>
+    <code>collection.set(key, value)</code>
+    <p>Sets the given key, value pair on every element in the collection. (Doesn't check on the key beforehand. So if the key is already set it's gonna be overwritten)</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>key: </strong>the key property to set on every element</li>
+        <li><strong>value: </strong>the value of the key property to set on every element</li>
     </ul>
+    <h3>returns</h3>
+    <p>The context collection</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>collection.get("robinTheBirdy", "singsNicely")</code>
 </article>
 <article>
     <h2>add (method)</h2>
-    <p></p>
+    <code>collection.add(arr||obj)</code>
+    <p>Adds a new array or a single object to the collection.</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>arr||obj: </strong>The array or obj to add to the collection</li>
     </ul>
+    <h3>returns</h3>
+    <p>Nothing at this moment but probably that's a mistake.</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>coll.add([{"k1": "v1"}, {"k2": "v2"}])</code>
 </article>
 <article>
     <h2>removeWhere (method)</h2>
-    <p></p>
+    <code>collection.removeWhere(filters||key, value)</code>
+    <p>Removes those elements from the collection which have all the key value pair given as arguments</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>filters: </strong>An object the key, value pairs we want to filter with</li>
     </ul>
+    <p>or</p>
+    <ul>
+        <li><strong>key: </strong>The key we want to filter with</li>
+        <li><strong>value: </strong>The value of the key we want to filter with</li>
+    </ul>
+    <h3>returns</h3>
+    <p>The array of the removed elements.</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>coll.removeWhere({"k1": "v1", "k2": "v2"})</code>
+    <p>or</p>
+    <code>coll.removeWhere("k1", "v1")</code>
 </article>
 <article>
     <h2>getWhere (method)</h2>
-    <p></p>
+    <code>collection.getWhere(key, value)</code>
+    <p>Returns all the elements which have the given key value pair.</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>key: </strong>The key to filter with.</li>
+        <li><strong>value: </strong>The value of the key to filter with.</li>
     </ul>
+    <h3>returns</h3>
+    <p>The array of result elements</p>
     <h3>example usage</h3>
-    <code></code>
+    <code>var arr = coll.getWhere("someKey", "someValue")</code>
 </article>
 <article>
     <h2>without (method)</h2>
-    <p></p>
+    <code>collection.getWhere(b, func)</code>
+    <p>Gets new array of all items in this collection and not in b. Relative complement of B in A</p>
     <h3>params</h3>
     <ul>
-        <li></li>
+        <li><strong>b: </strong> Collection of containing objects to filter from collection.</li>
+        <li><strong>func: </strong> Comparator function to determine object match.</li>
     </ul>
     <h3>example usage</h3>
-    <code></code>
+    <code>coll1.without(coll2, function (coll1, coll2) { return coll1.prop === coll2.prop; })</code>
 </article>
 </body>
 </html>
