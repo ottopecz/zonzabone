@@ -1,5 +1,5 @@
 ({
-    "baseUrl": "src/app",
+    "baseUrl": "src/modules",
     paths: {
         "mustache": "empty:"
     },
