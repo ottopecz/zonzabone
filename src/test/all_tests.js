@@ -14,7 +14,7 @@
                 "jquery"            : staticRoot + 'jquery/jquery.min',
                 "bdd"               : staticRoot + 'bdd/bdd',
                 "mustache"          : staticRoot + 'mustache/mustache',
-                "zonzabone"         : staticRoot + 'app/zonzabone',
+                "zonzabone"         : staticRoot + 'zonzabone/zonzabone',
                 "app_tests"         : staticRoot + 'app/src/test',
                 "sinon"             : staticRoot + 'sinon/sinon-1.7.3',
                 "mockjax"           : staticRoot + 'jquery-mockjax/jquery.mockjax',
