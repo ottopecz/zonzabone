@@ -4,6 +4,62 @@
     <title>Zonzabone - model</title>
 </head>
 <body>
-
+<h1>Model</h1>
+<article>
+    <h2>General</h2>
+    <p>A model is an enhanced javascript object. The added methods operate on the core object of the model.</p>
+</article>
+<article>
+    <h2>get (method)</h2>
+    <code>model.get(key)</code>
+    <p>Returns the value of the property with the given key.</p>
+    <h3>params</h3>
+    <ul>
+        <li><strong>key: </strong>The key of the property.</li>
+    </ul>
+    <h3>returns</h3>
+    <p>The value of the property with the given key.</p>
+    <h3>example usage</h3>
+    <code>var value = model.get("someKey")</code>
+</article>
+<article>
+    <h2>set (method)</h2>
+    <code>model.set(key, value)</code>
+    <p>Sets the property with the given key to the given value</p>
+    <h3>params</h3>
+    <ul>
+        <li><strong>key: </strong>The key of the property we want to set.</li>
+        <li><strong>value: </strong>The value of the property we want to set.</li>
+    </ul>
+    <h3>returns</h3>
+    <p>The context model.</p>
+    <h3>example usage</h3>
+    <code>model.set("someKey": "someValue")</code>
+</article>
+<article>
+    <h2>core (method)</h2>
+    <code>model.core()</code>
+    <p>Returns the core object of the model.</p>
+    <h3>params</h3>
+    <p>None</p>
+    <h3>returns</h3>
+    <p>The core object of the model.</p>
+    <h3>example usage</h3>
+    <code>var obj = model.core();</code>
+</article>
+<article>
+    <h2>init (method)</h2>
+    <code>model.init(options)</code>
+    <p>Sets up the model. Any passed arguments will enter the core object of the model.
+        If the argument is an array of valid objects it will be automatically wrapped up into a collection</p>
+    <h3>params</h3>
+    <ul>
+        <li><strong>options: </strong>The object of the initial arguments</li>
+    </ul>
+    <h3>returns</h3>
+    <p>The context model</p>
+    <h3>example usage</h3>
+    <code>model.init({ "arrOfObj": [{ "k1": "v1" }, { "k2": "v2" }], "someOtherArg": true })</code>
+</article>
 </body>
 </html>
