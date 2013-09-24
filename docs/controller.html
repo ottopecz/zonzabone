@@ -27,6 +27,7 @@
 </article>
 <article  id="init">
     <h2>init</h2>
+    <code>controller.init(options)</code>
     <p>Initializes the controller. If model and/or view are passed in the arguments <strong>init</strong> will create model and/or view members for the controller.
         if model and/or view was created beforehand they going to get overridden.
         <strong>Init</strong> is also able to create model and/or view if they were not defined in the factory previously or passed as an argument.
@@ -40,6 +41,8 @@
         <li><strong>el:</strong> The root of the dom part that the controller controls. Block controllers must be always passed with this</li>
         <li><strong>any other</strong> Any other argument will be automatically entered into the model</li>
     </ul>
+    <h3>returns</h3>
+    <p>The context controller</p>
     <h3>example usage</h3>
     <code>
     // Block controller, someData will be wrapped up in a basic model, el will be wrapped up in a basic view unless you define custom view and/or custom model. Then you have pass this "el" and "someData" manually</br>
@@ -50,6 +53,7 @@
 </article>
 <article id="load_blocks">
     <h2>loadBlocks</h2>
+    <code>controller.loadBlocks(broker, parent)</code>
     <p>Loads the first level blocks under its area.
         Second, third etc blocks needed to be loaded by their direct parent controller.
         To decide if a block is first-level or not <strong>findClosest</strong> will be used.
@@ -60,6 +64,8 @@
         <li><strong>broker:</strong> Reference to event broker. Note: Broker should be a singleton so this has to be really a reference (The root controller will create the broker originally)</li>
         <li><strong>parent:</strong> Reference to loader controller. Note: Using this reference the blocks on the same level can exchange information firing custom event on their common parent.</li>
     </ul>
+    <h3>returns</h3>
+    <p>The context controller</p>
     <h3>example usage</h3>
     <code>
         /**</br>
@@ -75,22 +81,25 @@
 </article>
 <article id="events">
     <h2>events</h2>
+    <code>controller.events</code>
     <p>!!!This works only if you passed a dom element as a parameter (el).!!! So Probably your controller is a block controller.
         The <strong>events</strong> is a javascript object which describes browser events to delegate. Note: You must understand the difference between event delegation and event binding.
         The init function of the super factory (controller.js) will read this object so if you want these events to get delegated you have to execute the init function of the super factory (controller.js) in the sub factory.
         - Most probably in the init function.</p>
-    <h3>params (this is not a function so the following is just a raw description)</h3>
+    <h3>type</h3>
+    <p>object</p>
     <ul>
-        <li>The key of the object member should the browser event and css path you want to delegate to.
+        <li>The <strong>key</strong> of the object member should be the browser event and css path you want to delegate to.
             - Exactly like Backbone. Note that if you don't specify a css path you will bind the event to the root element of the block controller</li>
         <li><strong>handler</strong>: What you describe in <strong>handler</strong> will handle the event when it happens</li>
         <li><strong>ctx</strong>: !!!optional!!! What you describe in <strong>ctx</strong> will be used as a scope for the handler. If you don't specify this the current scope will be used instead</li>
     </ul>
     <h3>example usage</h3>
-    <code>that.events = { "click .some-css-class": { "handler": that.view.clickHandler, "ctx": that.view } }</code>
+    <code>contr.events = { "click .some-css-class": { "handler": contr.view.clickHandler, "ctx": contr.view } }</code>
 </article>
 <article id="push">
     <h2>push</h2>
+    <code>controller.push(url, state)</code>
     <p>This pushes the browser history. - Implemented because every controller must be able to do this</p>
     <h3>params</h3>
     <ul>
@@ -101,19 +110,25 @@
             it's resolved relative to the current URL. The new URL must be of the same origin as the current URL; otherwise, pushState() will throw an exception.
             This parameter is optional; if it isn't specified, it's set to the document's current URL.</li>
     </ul>
+    <h3>returns</h3>
+    <p>Nothing</p>
     <h3>example usage</h3>
     <code>contr.push("/foo/bar/" { "someData": "someData" })</code>
 </article>
 <article id="options">
     <h2>options</h2>
+    <code>controller.options</code>
     <p>The initial options with that the controller factory was executed.</p>
     <h3>type</h3>
     <p>Object</p>
 </article>
 <article id="teardown">
     <h2>teardown</h2>
+    <code>controller.teardown()</code>
     <p>Undelegates the browser events and tears down the views of the controller. Unfortunately only collection of views can be properly destroyed.
         I.e. It will fail on a view with sub-views.</p>
+    <h3>returns</h3>
+    <p>Nothing</p>
     <h3>Example usage</h3>
     <code>contr.tearDown()</code>
 </article>
