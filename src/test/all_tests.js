@@ -7,7 +7,7 @@
     var entry = document.getElementById('js_entry'),
         staticRoot = entry.getAttribute('data-static'),
         config = {
-            "baseUrl": staticRoot + 'app/src/test/',
+            "baseUrl": staticRoot + 'zonzabone/src/test/',
             "waitSeconds": 5,
             "urlArgs": 'bust=' + (new Date()).getTime(),
             "paths": {
@@ -15,7 +15,7 @@
                 "bdd"               : staticRoot + 'bdd/bdd',
                 "mustache"          : staticRoot + 'mustache/mustache',
                 "zonzabone"         : staticRoot + 'zonzabone/zonzabone',
-                "app_tests"         : staticRoot + 'app/src/test',
+                "zonzabone_tests"   : staticRoot + 'zonzabone/src/test',
                 "sinon"             : staticRoot + 'sinon/sinon-1.7.3',
                 "mockjax"           : staticRoot + 'jquery-mockjax/jquery.mockjax',
                 "text"              : staticRoot + 'text/text',

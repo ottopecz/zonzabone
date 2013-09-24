@@ -7,7 +7,7 @@ define(function (require) {
     "use strict";
 
     var zonzabone   = require('zonzabone'),
-        data        = require('json!app_tests/json/utils.json');
+        data        = require('json!zonzabone_tests/json/utils.json');
 
     module('Utils Tests');
 
