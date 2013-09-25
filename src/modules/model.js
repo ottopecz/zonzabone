@@ -6,8 +6,11 @@
  * @require Zonzabone.collection
  * @require Zonzabone.utils
  */
+/*global window*/
 (function ($, Zonzabone) {
     "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.model = function (options) {
         var that = Object.create(Zonzabone.ui_super()),

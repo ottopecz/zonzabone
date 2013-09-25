@@ -5,8 +5,11 @@
  * @require Zonzabone.ui_super
  * @require Zonzabone.utils
  */
+/*global window*/
 (function ($, Zonzabone) {
     "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.collection = function (arr) {
         var that = Object.create(Zonzabone.ui_super()),

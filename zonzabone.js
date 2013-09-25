@@ -1,25 +1,26 @@
-
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 23/09/2013
  */
-/*global define*/
+/*global window, define*/
 (function (window) {
-    
+    "use strict";
 
-    window.Zonzabone = {};
+    window.Zonzabone = window.Zonzabone || {};
 
     if (typeof define === "function" && define.amd) {
         define("zonzabone", [], function () { return window.Zonzabone; });
     }
-}(window));
-/**
+}(window));/**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 17/06/2013
  * @require window.jQuery
  */
+/*global window*/
 (function ($, Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     var that = {};
 
@@ -125,16 +126,16 @@
     };
 
     Zonzabone.utils = that;
-}(window.jQuery, window.Zonzabone));
-define("utils", function(){});
-
-/**
+}(window.jQuery, window.Zonzabone));/**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 17/06/2013
  * @require Zonzabone
  */
+/*global window*/
 (function (Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.events = function () {
         var that = {},
@@ -231,16 +232,16 @@ define("utils", function(){});
 
         return that;
     };
-}(window.Zonzabone));
-define("events", function(){});
-
-/**
+}(window.Zonzabone));/**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
  * @require Zonzabone.events
  */
+/*global window*/
 (function (Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.ui_super = function () {
         var that = Zonzabone.events();
@@ -255,18 +256,18 @@ define("events", function(){});
 
         return that;
     };
-}(window.Zonzabone));
-define("ui_super", function(){});
-
-/**
+}(window.Zonzabone));/**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/06/2013
  * @require window.jQuery
  * @require Zonzabone.ui_super
  * @require Zonzabone.utils
  */
+/*global window*/
 (function ($, Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.collection = function (arr) {
         var that = Object.create(Zonzabone.ui_super()),
@@ -436,8 +437,6 @@ define("ui_super", function(){});
         return that;
     };
 }(window.jQuery, window.Zonzabone));
-define("collection", function(){});
-
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
@@ -446,8 +445,11 @@ define("collection", function(){});
  * @require Zonzabone.collection
  * @require Zonzabone.utils
  */
+/*global window*/
 (function ($, Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.model = function (options) {
         var that = Object.create(Zonzabone.ui_super()),
@@ -513,19 +515,18 @@ define("collection", function(){});
 
         return that.init(options);
     };
-}(window.jQuery, window.Zonzabone));
-define("model", function(){});
-
-/**
+}(window.jQuery, window.Zonzabone));/**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
  * @require window.jQuery
  * @require window.Mustache
  * @require Zonzabone.ui_super
  */
-/*global define, require*/
+/*global window, define, require*/
 (function ($, Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     var mustache;
 
@@ -655,10 +656,7 @@ define("model", function(){});
 
         return that.init();
     };
-}(window.jQuery, window.Zonzabone));
-define("view", function(){});
-
-/**
+}(window.jQuery, window.Zonzabone));/**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
  * @require window.jQuery
@@ -666,9 +664,11 @@ define("view", function(){});
  * @require Zonzabone.view
  * @require Zonzabone.model
  */
-/*global define, require*/
+/*global window, require*/
 (function ($, Zonzabone) {
-    
+    "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     $.fn.extend({
         findClosest: function (sel) {
@@ -813,4 +813,3 @@ define("view", function(){});
         return that;
     };
 }(window.jQuery, window.Zonzabone));
-define("controller", function(){});

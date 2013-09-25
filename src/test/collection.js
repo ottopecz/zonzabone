@@ -1,13 +1,12 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date: 09/09/2013
+ * @require window.Zonzabone
+ * @require window.bdd
  */
-/*global define, module, test, sinon, asyncTest, stop, start, deepEqual, equal, notDeepEqual, notStrictEqual, ok, strictEqual, throws, expect*/
-define(function (require) {
+/*global window, module, test, sinon, asyncTest, stop, start, deepEqual, equal, notDeepEqual, notStrictEqual, ok, strictEqual, throws, expect*/
+(function (zonzabone, bdd) {
     "use strict";
-
-    var zonzabone   = require('zonzabone'),
-        bdd         = require('bdd');
 
     module('Collection Tests');
 
@@ -50,4 +49,4 @@ define(function (require) {
                 equal(el.keyCustom, value, '');
             });
         };
-});
+}(window.Zonzabone, window.bdd));

@@ -5,9 +5,11 @@
  * @require window.Mustache
  * @require Zonzabone.ui_super
  */
-/*global define, require*/
+/*global window, define, require*/
 (function ($, Zonzabone) {
     "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     var mustache;
 

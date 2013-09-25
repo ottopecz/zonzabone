@@ -6,9 +6,11 @@
  * @require Zonzabone.view
  * @require Zonzabone.model
  */
-/*global define, require*/
+/*global window, require*/
 (function ($, Zonzabone) {
     "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     $.fn.extend({
         findClosest: function (sel) {

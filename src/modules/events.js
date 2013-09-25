@@ -3,8 +3,11 @@
  * @date 17/06/2013
  * @require Zonzabone
  */
+/*global window*/
 (function (Zonzabone) {
     "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     Zonzabone.events = function () {
         var that = {},

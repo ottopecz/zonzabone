@@ -1,13 +1,59 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date: 26/07/2013
+ * @require window.Zonzabone
  */
-/*global define, module, test, sinon, asyncTest, stop, start, deepEqual, equal, notDeepEqual, notStrictEqual, ok, strictEqual, throws, expect*/
-define(function (require) {
+/*global window, module, test, sinon, asyncTest, stop, start, deepEqual, equal, notDeepEqual, notStrictEqual, ok, strictEqual, throws, expect*/
+(function (zonzabone, undefined) {
     "use strict";
 
-    var zonzabone   = require('zonzabone'),
-        data        = require('json!zonzabone_tests/json/utils.json');
+        var data = {
+            "without": {
+
+                "a": [
+                    {
+                        "shape": "square",
+                        "colour": "pink",
+                        "sides": 4,
+                        "name": "jeremiah",
+                        "weight": 70
+                    },
+                    {
+                        "shape": "circle",
+                        "colour": "red",
+                        "sides": 1,
+                        "name": "henrietta",
+                        "weight": 80
+                    },
+                    {
+                        "shape": "triangle",
+                        "colour": "green",
+                        "sides": 3,
+                        "name": "joan",
+                        "weight": 80
+                    }
+                ],
+                "b": [
+                    {
+                        "shape": "dodecahedron",
+                        "colour": "pink",
+                        "sides": 10,
+                        "name": "kevin",
+                        "weight": 70
+                    },
+                    {
+                        "shape": "pentagon",
+                        "colour": "green",
+                        "sides": 5,
+                        "name": "henrietta",
+                        "weight": 80
+                    }
+                ],
+                "c": [
+
+                ]
+            }
+        };
 
     module('Utils Tests');
 
@@ -53,4 +99,4 @@ define(function (require) {
         equal(func('sides').length, 3, 'No sides match in a and b');
         equal(func('shape').length, 3, 'No shapes exist in a which exist in b');
     });
-});
+}(window.Zonzabone));

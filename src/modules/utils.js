@@ -3,8 +3,11 @@
  * @date 17/06/2013
  * @require window.jQuery
  */
+/*global window*/
 (function ($, Zonzabone) {
     "use strict";
+
+    Zonzabone = Zonzabone || {};
 
     var that = {};
 
