@@ -26,7 +26,7 @@
         Also it's possible that a plain controller doesn't control any views but does something else.</p>
 </article>
 <article  id="init">
-    <h2>init</h2>
+    <h2>init <span>(method)</span></h2>
     <code>controller.init(options)</code>
     <p>Initializes the controller. If model and/or view are passed in the arguments <strong>init</strong> will create model and/or view members for the controller.
         if model and/or view was created beforehand they going to get overridden.
@@ -44,15 +44,22 @@
     <h3>returns</h3>
     <p>The context controller</p>
     <h3>example usage</h3>
-    <code>
-    // Block controller, someData will be wrapped up in a basic model, el will be wrapped up in a basic view unless you define custom view and/or custom model. Then you have pass this "el" and "someData" manually</br>
-    contr.init({ "el": $('.css_path_to a _dom_el').get(0), "someData": { "key": "value" } })</br>
-    // Plain controller, custom view and model are passed to init. Also you can define them inside the controller</br>
-    contr.init({ "model": custom_model_factory({ "key": "value" }), "view": custom_view_factory("el": $('.css_path_to a _dom_el').get(0)) })
-    </code>
+    <pre>
+    (function (Zonzabone) {
+
+        // Block controller, someData will be wrapped up in a basic model, el will be wrapped up in a basic view unless you define custom view and/or custom model.
+        // Then you have pass this "el" and "someData" manually
+        // Note: Preferably block controllers are loaded with <a href="#load_blocks">loadBlock</a>
+        var blockContr = Zonzabone.controller({ "el": $('.css_path_to a _dom_el').get(0), "someData": { "key": "value" } });
+
+        // Plain controller, custom view and model are passed to init. Also you can define them inside the controller
+        var plainContr = Zonzabone.controller({ "model": custom_model_factory({ "key": "value" }), "view": custom_view_factory("el": $('.css_path_to a _dom_el').get(0)) });
+
+    }(Zonzabone))
+    </pre>
 </article>
 <article id="load_blocks">
-    <h2>loadBlocks</h2>
+    <h2>loadBlocks <span>(method)</span></h2>
     <code>controller.loadBlocks(broker, parent)</code>
     <p>Loads the first level blocks under its area.
         Second, third etc blocks needed to be loaded by their direct parent controller.
@@ -67,20 +74,24 @@
     <h3>returns</h3>
     <p>The context controller</p>
     <h3>example usage</h3>
-    <code>
-        /**</br>
-         * We need to create a broker beforehand</br>
-         * Broker can be null of course. In this case the block cannot fire global events</br>
-         */</br>
-        var broker = events();</br>
-        /**</br>
-         * We pass the loader controller as a parent</br>
-         */</br>
-        contr.loadBlocks(broker, contr)
-    </code>
+    <pre>
+    (function (NS, Zonzabone, options) {
+
+        var that = Object.create(Zonzabone.controller(options)),
+            broker = events();
+
+        that.init = function (options) {
+            this.getProto().init.bind(this)(options);
+
+            return this.loadBlocks(broker, this);
+        };
+
+        NS.controller = that.init();
+    }(NS, Zonzabone, options))
+    </pre>
 </article>
 <article id="events">
-    <h2>events</h2>
+    <h2>events <span>(property)</span></h2>
     <code>controller.events</code>
     <p>!!!This works only if you passed a dom element as a parameter (el).!!! So Probably your controller is a block controller.
         The <strong>events</strong> is a javascript object which describes browser events to delegate. Note: You must understand the difference between event delegation and event binding.
@@ -95,10 +106,12 @@
         <li><strong>ctx</strong>: !!!optional!!! What you describe in <strong>ctx</strong> will be used as a scope for the handler. If you don't specify this the current scope will be used instead</li>
     </ul>
     <h3>example usage</h3>
-    <code>contr.events = { "click .some-css-class": { "handler": contr.view.clickHandler, "ctx": contr.view } }</code>
+    <pre>
+    contr.events = { "click .some-css-class": { "handler": contr.view.clickHandler, "ctx": contr.view } }
+    </pre>
 </article>
 <article id="push">
-    <h2>push</h2>
+    <h2>push <span>(method)</span></h2>
     <code>controller.push(url, state)</code>
     <p>This pushes the browser history. - Implemented because every controller must be able to do this</p>
     <h3>params</h3>
@@ -113,24 +126,56 @@
     <h3>returns</h3>
     <p>Nothing</p>
     <h3>example usage</h3>
-    <code>contr.push("/foo/bar/" { "someData": "someData" })</code>
+    <pre>
+    (function (NS, Zonzabone, options) {
+
+        var that = Zonzabone.controller(options)
+
+        that.someMethod = function () {
+
+            // some other functionality
+
+            this.push("/foo/bar/" { "someData": "someData" });
+
+            // some other functionality
+        };
+
+        NS.controller = that.init();
+    }(NS, Zonzabone, options))
+    </pre>
 </article>
 <article id="options">
-    <h2>options</h2>
+    <h2>options <span>(property)</span></h2>
     <code>controller.options</code>
-    <p>The initial options with that the controller factory was executed.</p>
+    <p>The initial options with that the controller was created.</p>
     <h3>type</h3>
     <p>Object</p>
 </article>
 <article id="teardown">
-    <h2>teardown</h2>
+    <h2>teardown <span>(method)</span></h2>
     <code>controller.teardown()</code>
     <p>Undelegates the browser events and tears down the views of the controller. Unfortunately only collection of views can be properly destroyed.
         I.e. It will fail on a view with sub-views.</p>
     <h3>returns</h3>
     <p>Nothing</p>
     <h3>Example usage</h3>
-    <code>contr.tearDown()</code>
+    <pre>
+    (function (NS, Zonzabone, options) {
+
+        var that = Zonzabone.controller(options)
+
+        that.someMethod = function () {
+
+            // some other functionality
+
+            this.tearDown();
+
+            // some other functionality
+        };
+
+        NS.controller = that.init();
+    }(NS, Zonzabone, options))
+    </pre>
 </article>
 </body>
 </html>
