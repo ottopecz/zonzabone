@@ -27,8 +27,7 @@
         The factory function of the collection doesn't check on the type of the initial arguments so you have to make sure that it's really an array of objects.</p>
 </article>
 <article>
-    <h2>reset (method)</h2>
-    <code>collection.reset(arr)</code>
+    <h2>reset <span>(method) -- </span><code>collection.reset(arr)</code></h2>
     <p>Resets the core of the collection either to an empty array or the passed array</p>
     <h3>params</h3>
     <ul>
@@ -40,17 +39,17 @@
     <code>coll.reset([{"k1": "v1"}, {"k2": "v2"}])</code>
 </article>
 <article>
-    <h2>length (property)</h2>
-    <code>collection.length</code>
+    <h2>length <span>(property) -- </span><code>collection.length</code></h2>
+
     <p>The length (number of elements) of the collection. This is a proxy to the native length property of the core array.</p>
     <h3>type</h3>
     <p>Number</p>
     <h3>example usage</h3>
-    <code>var l = coll.length;</code>
+    <pre>var l = coll.length;</code>
 </article>
 <article>
-    <h2>core (method)</h2>
-    <code>collection.core()</code>
+    <h2>core <span>(method) -- </span><code>collection.core()</code></h2>
+
     <p>Returns the core array of the collection</p>
     <h3>params</h3>
     <ul>
@@ -59,11 +58,10 @@
     <h3>returns</h3>
     <p>An core array of the collection</p>
     <h3>example usage</h3>
-    <code>var arr = coll.core()</code>
+    <pre>var arr = coll.core()</code>
 </article>
 <article>
-    <h2>get (method)</h2>
-    <code>collection.get(key)</code>
+    <h2>get <span>(method) -- </span><code>collection.get(key)</code></h2>
     <p>Returns all the element with the given key</p>
     <h3>params</h3>
     <ul>
@@ -72,11 +70,10 @@
     <h3>returns</h3>
     <p>Either an array of the hits or - if there is only one result - an object</p>
     <h3>example usage</h3>
-    <code>var ret = coll.get("robinTheBirdy")</code>
+    <pre>var ret = coll.get("robinTheBirdy")</code>
 </article>
 <article>
-    <h2>set (method)</h2>
-    <code>collection.set(key, value)</code>
+    <h2>set <span>(method) -- </span><code>collection.set(key, value)</code></h2>
     <p>Sets the given key, value pair on every element in the collection. (Doesn't check on the key beforehand. So if the key is already set it's gonna be overwritten)</p>
     <h3>params</h3>
     <ul>
@@ -86,11 +83,10 @@
     <h3>returns</h3>
     <p>The context collection</p>
     <h3>example usage</h3>
-    <code>collection.get("robinTheBirdy", "singsNicely")</code>
+    <pre>collection.get("robinTheBirdy", "singsNicely")</code>
 </article>
 <article>
-    <h2>add (method)</h2>
-    <code>collection.add(arr||obj)</code>
+    <h2>add <span>(method) -- </span><code>collection.add(arr||obj)</code></h2>
     <p>Adds a new array or a single object to the collection.</p>
     <h3>params</h3>
     <ul>
@@ -99,11 +95,10 @@
     <h3>returns</h3>
     <p>Nothing at this moment but probably that's a mistake.</p>
     <h3>example usage</h3>
-    <code>coll.add([{"k1": "v1"}, {"k2": "v2"}])</code>
+    <pre>coll.add([{"k1": "v1"}, {"k2": "v2"}])</code>
 </article>
 <article>
-    <h2>removeWhere (method)</h2>
-    <code>collection.removeWhere(filters||key, value)</code>
+    <h2>removeWhere <span>(method) -- </span><code>collection.removeWhere(filters||key, value)</code></h2>
     <p>Removes those elements from the collection which have all the key value pair given as arguments</p>
     <h3>params</h3>
     <ul>
@@ -117,13 +112,12 @@
     <h3>returns</h3>
     <p>The array of the removed elements.</p>
     <h3>example usage</h3>
-    <code>coll.removeWhere({"k1": "v1", "k2": "v2"})</code>
+    <pre>coll.removeWhere({"k1": "v1", "k2": "v2"})</code>
     <p>or</p>
-    <code>coll.removeWhere("k1", "v1")</code>
+    <pre>coll.removeWhere("k1", "v1")</code>
 </article>
 <article>
-    <h2>getWhere (method)</h2>
-    <code>collection.getWhere(key, value)</code>
+    <h2>getWhere <span>(method) -- </span><code>collection.getWhere(key, value)</code></h2>
     <p>Returns all the elements which have the given key value pair.</p>
     <h3>params</h3>
     <ul>
@@ -133,11 +127,10 @@
     <h3>returns</h3>
     <p>The array of result elements</p>
     <h3>example usage</h3>
-    <code>var arr = coll.getWhere("someKey", "someValue")</code>
+    <pre>var arr = coll.getWhere("someKey", "someValue")</code>
 </article>
 <article>
-    <h2>without (method)</h2>
-    <code>collection.getWhere(b, func)</code>
+    <h2>without <span>(method) -- </span><code>collection.getWhere(b, func)</code></h2>
     <p>Gets new array of all items in this collection and not in b. Relative complement of B in A</p>
     <h3>params</h3>
     <ul>
@@ -145,7 +138,7 @@
         <li><strong>func: </strong> Comparator function to determine object match.</li>
     </ul>
     <h3>example usage</h3>
-    <code>coll1.without(coll2, function (coll1, coll2) { return coll1.prop === coll2.prop; })</code>
+    <pre>coll1.without(coll2, function (coll1, coll2) { return coll1.prop === coll2.prop; })</code>
 </article>
 </div> <!-- content ends -->
 </body>
