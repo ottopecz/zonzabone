@@ -129,7 +129,7 @@
     <pre>
     (function (NS, Zonzabone, options) {
 
-        var that = Zonzabone.controller(options)
+        var that = Object.create(Zonzabone.controller(options)
 
         that.someMethod = function () {
 
@@ -162,7 +162,7 @@
     <pre>
     (function (NS, Zonzabone, options) {
 
-        var that = Zonzabone.controller(options)
+        var that = Object.create(Zonzabone.controller(options)
 
         that.someMethod = function () {
 

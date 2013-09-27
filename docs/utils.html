@@ -4,6 +4,303 @@
     <title>Zonzabone - utils</title>
 </head>
 <body>
+<nav>
+    <a href="index.html">home</a>
+    <ul>
+        <li><a href="#shallowClone">shallowClone</a></li>
+        <li><a href="#deepClone">deepClone</a></li>
+        <li><a href="#readCookie">readCookie</a></li>
+        <li><a href="#validObj">validObj</a></li>
+        <li><a href="#arrOfObj">arrOfObj</a></li>
+        <li><a href="#camelCase">camelCase</a></li>
+        <li><a href="#without">without</a></li>
+    </ul>
+</nav>
+<h1>Utils</h1>
+<article>
+    <h2>General</h2>
+    <p></p>
+</article>
+<article id="shallowClone">
+    <h2>shallowClone <span>(method)</span></h2>
+    <code>util.shallowClone(obj)</code>
+    <p>Clones an object non-recursively.</p>
+    <h3>params</h3>
+    <ul><li><strong>obj: </strong>The object to be cloned</li></ul>
+    <h3>returns</h3>
+    <p>Object</p>
+    <h3>example usage</h3>
+    <pre>
+    var options = {
+            "number": 1,
+            "boolean": true,
+            "string": "String",
+            "object": {
+                "number": 1,
+                "boolean": true,
+                "string": "String",
+            }
+        };
+    (function (Zonzabone, options) {
+        "use strict";
 
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                // Options will be cloned non-recursively so the inside object will not be copied over
+                clone = Zonzabone.utils.shallowClone(options);
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
+<article id="deepClone">
+    <h2>deepClone <span>(method)</span></h2>
+    <code>util.deepClone(obj)</code>
+    <p>Clones an object recursively.</p>
+    <h3>params</h3>
+    <ul><li><strong>obj: </strong>The object to be cloned</li></ul>
+    <h3>returns</h3>
+    <p>Object</p>
+    <h3>example usage</h3>
+    <pre>
+    var options = {
+            "number": 1,
+            "boolean": true,
+            "string": "String",
+            "object": {
+                "number": 1,
+                "boolean": true,
+                "string": "String",
+            }
+        };
+    (function (Zonzabone, options) {
+        "use strict";
+
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                // Options will be cloned recursively so inside object will be copied over
+                clone = Zonzabone.utils.deepClone(options);
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
+<article id="readCookie">
+    <h2>readCookie <span>(method)</span></h2>
+    <code>util.readCookie(name)</code>
+    <p>Reads the document cookie with the passed name</p>
+    <h3>params</h3>
+    <ul><li><strong>name: </strong>The name of the cookie</li></ul>
+    <h3>returns</h3>
+    <p>String</p>
+    <h3>example usage</h3>
+    <pre>
+    (function (Zonzabone, options) {
+        "use strict";
+
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                $.ajaxSetup({
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("textStatus: " + textStatus + ", errorThrown: " + errorThrown);
+                    },
+                    contentType: "application/json",
+                    beforeSend: function (xhr, settings) {
+                        xhr.setRequestHeader("X-CSRFToken", Zonzabone.utils.readCookie('csrftoken'));
+                    }
+                });
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
+<article id="validObj">
+    <h2>validObj <span>(method)</span></h2>
+    <code>util.validObj(elmnt)</code>
+    <p>Returns true if the passed object is a "data" object. So it's not array, function or null</p>
+    <h3>params</h3>
+    <ul><li><strong>elmnt: </strong>The object to find out about.</li></ul>
+    <h3>returns</h3>
+    <p>Boolean</p>
+    <h3>example usage</h3>
+    <pre>
+    var options = {
+        "obj1" = null,
+        "obj2" = function () {},
+        "obj3" = undefined,
+        "obj4" = [],
+        "obj5" = {}
+    };
+    (function (Zonzabone, options) {
+        "use strict";
+
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                var isDataArr;
+
+                isDataArr = Zonzabone.utils.arrOfObj(options.obj1); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.obj2); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.obj3); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.obj4); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.obj5); // true
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
+<article id="arrOfObj">
+    <h2>arrOfObj <span>(method)</span></h2>
+    <code>util.arrOfObj(arr)</code>
+    <p>Test an array if its elements are valid "data" array. So they are not array, function or null</p>
+    <h3>params</h3>
+    <ul><li><strong>arr: </strong> Array to find out about</li></ul>
+    <h3>returns</h3>
+    <p>Boolean</p>
+    <h3>example usage</h3>
+    <pre>
+    var options = {
+        "arr1" = [{}, {}, null],
+        "arr2" = [{}, {}, function () {}],
+        "arr3" = [{}, {}, undefined],
+        "arr4" = [{}, {}, []],
+        "arr5" = [{}, {}, {}]
+    };
+    (function (Zonzabone, options) {
+        "use strict";
+
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                var isDataArr;
+
+                isDataArr = Zonzabone.utils.arrOfObj(options.arr1); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.arr2); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.arr3); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.arr4); // false
+                isDataArr = Zonzabone.utils.arrOfObj(options.arr5); // true
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
+<article id="camelCase">
+    <h2>camelCase <span>(method)</span></h2>
+    <code>util.camelCase(str)</code>
+    <p>Converts strings of dash concatenated words into camel cased strings.</p>
+    <h3>params</h3>
+    <ul><li><strong>str: </strong> String to camel-case</li></ul>
+    <h3>returns</h3>
+    <p>String</p>
+    <h3>example usage</h3>
+    <pre>
+    var options = {
+        "str": "one-two-three-four"
+    };
+    (function (Zonzabone, options) {
+        "use strict";
+
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                var camelCasedStr = Zonzabone.utils.arrOfObj(options.str); // OneTwoThreeFour
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
+<article id="without">
+    <h2>without <span>(method)</span></h2>
+    <code>util.without(a, b, func)</code>
+    <p>Get new array of all items in a and not in b.  Relative complement of B in A. Those elements which belong to a but doesn't belong to b</p>
+    <h3>params</h3>
+    <ul>
+        <li><strong>a: </strong>Array of objects to filter</li>
+        <li><strong>b: </strong>Array of objects to filter from a</li>
+        <li><strong>func: </strong>Comparator function to determine object match</li>
+    </ul>
+    <h3>returns</h3>
+    <p>Array of objects</p>
+    <h3>example usage</h3>
+    <pre>
+    var options = {
+        "arr1": [{"id": "one"}, {"id": "two"}, {"id": "three"}, {"id": "four"}],
+        "arr2": [{"id": "three"}, {"id": "four"}]
+    };
+    (function (Zonzabone, options) {
+        "use strict";
+
+        return function (options) {
+
+            var that = Object.create(Zonzabone.controller(options));
+
+            that.init = function (options) {
+                this.getProto().init.bind(this)(options);
+
+                var fn = function (a, b) {
+                   return a.id === b.id;
+                };
+
+                var complementer = Zonzabone.utils.without(options.arr1, options.arr2, fn); // [{"id": "one"}, {"id": "two"}]
+
+                return this;
+            };
+
+            return that.init(options);
+        };
+    }(Zonzabone, options));
+    </pre>
+</article>
 </body>
 </html>
