@@ -28,8 +28,7 @@
         Also it's possible that a plain controller doesn't control any views but does something else.</p>
 </article>
 <article  id="init">
-    <h2>init <span>(method)</span></h2>
-    <code>controller.init(options)</code>
+    <h2>init <span>(method) -- </span><code>controller.init(options)</code></h2>
     <p>Initializes the controller. If model and/or view are passed in the arguments <strong>init</strong> will create model and/or view members for the controller.
         if model and/or view was created beforehand they going to get overridden.
         <strong>Init</strong> is also able to create model and/or view if they were not defined in the factory previously or passed as an argument.
@@ -61,8 +60,7 @@
     </pre>
 </article>
 <article id="load_blocks">
-    <h2>loadBlocks <span>(method)</span></h2>
-    <code>controller.loadBlocks(broker, parent)</code>
+    <h2>loadBlocks <span>(method) -- </span><code>controller.loadBlocks(broker, parent)</code></h2>
     <p>Loads the first level blocks under its area.
         Second, third etc blocks needed to be loaded by their direct parent controller.
         To decide if a block is first-level or not <strong>findClosest</strong> will be used.
@@ -93,8 +91,7 @@
     </pre>
 </article>
 <article id="events">
-    <h2>events <span>(property)</span></h2>
-    <code>controller.events</code>
+    <h2>events <span>(property) -- </span><code>controller.events</code></h2>
     <p>!!!This works only if you passed a dom element as a parameter (el).!!! So Probably your controller is a block controller.
         The <strong>events</strong> is a javascript object which describes browser events to delegate. Note: You must understand the difference between event delegation and event binding.
         The init function of the super factory (controller.js) will read this object so if you want these events to get delegated you have to execute the init function of the super factory (controller.js) in the sub factory.
@@ -113,8 +110,7 @@
     </pre>
 </article>
 <article id="push">
-    <h2>push <span>(method)</span></h2>
-    <code>controller.push(url, state)</code>
+    <h2>push <span>(method) -- </span><code>controller.push(url, state)</code></h2>
     <p>This pushes the browser history. - Implemented because every controller must be able to do this</p>
     <h3>params</h3>
     <ul>
@@ -147,15 +143,13 @@
     </pre>
 </article>
 <article id="options">
-    <h2>options <span>(property)</span></h2>
-    <code>controller.options</code>
+    <h2>options <span>(property) -- </span><code>controller.options</code></h2>
     <p>The initial options with that the controller was created.</p>
     <h3>type</h3>
     <p>Object</p>
 </article>
 <article id="teardown">
-    <h2>teardown <span>(method)</span></h2>
-    <code>controller.teardown()</code>
+    <h2>teardown <span>(method) -- </span><code>controller.teardown()</code></h2>
     <p>Undelegates the browser events and tears down the views of the controller. Unfortunately only collection of views can be properly destroyed.
         I.e. It will fail on a view with sub-views.</p>
     <h3>returns</h3>
