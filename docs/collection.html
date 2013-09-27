@@ -36,7 +36,7 @@
     <h3>returns</h3>
     <p>The context collection</p>
     <h3>example usage</h3>
-    <code>coll.reset([{"k1": "v1"}, {"k2": "v2"}])</code>
+    <code>coll.reset([{"k1": "v1"}, {"k2": "v2"}])</pre>
 </article>
 <article>
     <h2>length <span>(property) -- </span><code>collection.length</code></h2>
@@ -45,7 +45,7 @@
     <h3>type</h3>
     <p>Number</p>
     <h3>example usage</h3>
-    <pre>var l = coll.length;</code>
+    <pre>var l = coll.length;</pre>
 </article>
 <article>
     <h2>core <span>(method) -- </span><code>collection.core()</code></h2>
@@ -58,7 +58,7 @@
     <h3>returns</h3>
     <p>An core array of the collection</p>
     <h3>example usage</h3>
-    <pre>var arr = coll.core()</code>
+    <pre>var arr = coll.core()</pre>
 </article>
 <article>
     <h2>get <span>(method) -- </span><code>collection.get(key)</code></h2>
@@ -70,7 +70,7 @@
     <h3>returns</h3>
     <p>Either an array of the hits or - if there is only one result - an object</p>
     <h3>example usage</h3>
-    <pre>var ret = coll.get("robinTheBirdy")</code>
+    <pre>var ret = coll.get("robinTheBirdy")</pre>
 </article>
 <article>
     <h2>set <span>(method) -- </span><code>collection.set(key, value)</code></h2>
@@ -83,7 +83,7 @@
     <h3>returns</h3>
     <p>The context collection</p>
     <h3>example usage</h3>
-    <pre>collection.get("robinTheBirdy", "singsNicely")</code>
+    <pre>collection.get("robinTheBirdy", "singsNicely")</pre>
 </article>
 <article>
     <h2>add <span>(method) -- </span><code>collection.add(arr||obj)</code></h2>
@@ -95,7 +95,7 @@
     <h3>returns</h3>
     <p>Nothing at this moment but probably that's a mistake.</p>
     <h3>example usage</h3>
-    <pre>coll.add([{"k1": "v1"}, {"k2": "v2"}])</code>
+    <pre>coll.add([{"k1": "v1"}, {"k2": "v2"}])</pre>
 </article>
 <article>
     <h2>removeWhere <span>(method) -- </span><code>collection.removeWhere(filters||key, value)</code></h2>
@@ -112,9 +112,9 @@
     <h3>returns</h3>
     <p>The array of the removed elements.</p>
     <h3>example usage</h3>
-    <pre>coll.removeWhere({"k1": "v1", "k2": "v2"})</code>
+    <pre>coll.removeWhere({"k1": "v1", "k2": "v2"})</pre>
     <p>or</p>
-    <pre>coll.removeWhere("k1", "v1")</code>
+    <pre>coll.removeWhere("k1", "v1")</pre>
 </article>
 <article>
     <h2>getWhere <span>(method) -- </span><code>collection.getWhere(key, value)</code></h2>
@@ -127,7 +127,7 @@
     <h3>returns</h3>
     <p>The array of result elements</p>
     <h3>example usage</h3>
-    <pre>var arr = coll.getWhere("someKey", "someValue")</code>
+    <pre>var arr = coll.getWhere("someKey", "someValue")</pre>
 </article>
 <article>
     <h2>without <span>(method) -- </span><code>collection.getWhere(b, func)</code></h2>
@@ -138,7 +138,7 @@
         <li><strong>func: </strong> Comparator function to determine object match.</li>
     </ul>
     <h3>example usage</h3>
-    <pre>coll1.without(coll2, function (coll1, coll2) { return coll1.prop === coll2.prop; })</code>
+    <pre>coll1.without(coll2, function (coll1, coll2) { return coll1.prop === coll2.prop; })</pre>
 </article>
 </div> <!-- content ends -->
 </body>
