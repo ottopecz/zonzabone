@@ -58,8 +58,7 @@
         </pre>
     </article>
     <article id="$el">
-        <h2>$el (property)</h2>
-        <code>view.$el</code>
+        <h2>$el <span>(property) -- </span><code>view.$el</code></h2>
         <p>The jQuery wrapped piece of dom the view operates on. The $el represents the homeland of the view you should let your views to operate inside this area but never outside of this territory.</p>
         <h3>type</h3>
         <p>jQuery</p>
@@ -89,8 +88,7 @@
             So if you declare <strong>$el</strong> <strong>el</strong> will be automatically created by the init function of the super factory.</p>
     </article>
     <article id="el">
-        <h2>el (property)</h2>
-        <code>view.el</code>
+        <h2>el <span>(property) -- </span><code>view.el</code></h2>
         <p>The piece of dom the view operates on. The el represents the homeland of the view you should let your views to operate inside this area but never outside of this territory.</p>
         <h3>type</h3>
         <p>jQuery</p>
@@ -98,6 +96,7 @@
         <pre>
         $(view.el).addClass("some-class");
         </pre>
+        <div class="clearfix"></div>
         <pre>
         // This is a view
         (function (NS, Zonzabone) {
@@ -119,8 +118,7 @@
             So if you declare <strong>el</strong> <strong>$el</strong> will be automatically created by the init function of the super factory.</p>
     </article>
     <article id="className">
-        <h2>className (property)</h2>
-        <code>view.className</code>
+        <h2>className <span>(property) -- </span><code>view.className</code></h2>
         <p>The class name of the view. If you define this the init function of the super factory will apply the class on the dom element of the view.
             Please note that at this time this is just one single class.
             In the future this can be a whole list of classes.</p>
@@ -144,8 +142,7 @@
         </pre>
     </article>
     <article id="template">
-        <h2>template (property)</h2>
-        <pre>view.template</pre>
+        <h2>template <span>(property) -- </span><code>view.template</code></h2>
         <p>The template of the view. You declare this when you want to (re-)render the view from a template.
             There is no chance to extend a string in a sensible way so templates don't inherit from the template declared in the super factory but override each other.</p>
         <h3>type</h3>
@@ -168,14 +165,13 @@
         </pre>
     </article>
     <article id="viewModel">
-        <h2>viewModel (property)</h2>
-        <code>view.viewModel</code>
+        <h2>viewModel <span>(property) -- </span><code>view.viewModel</code></h2>
         <p>The model of the view. You declare this when you want the (re-)render the view from a template.
             So most probably you will need a template to do this.
             You may want to change the view model dynamically in order to re-render the view again and again.
-            Note that if you don't declare the viewModel in a factory you have to clone the viewModel else you will change the viewModel for every other view.
+            Note that if you don't declare the viewModel in a factory you have to clone the viewModel, else you will change the viewModel for every other view.
             If you do this in a factory the init function of the super factory will clone the viewModel for you.
-            Please note that every view has a viewModel for default. If you did not declare one the super factory will create one for you.
+            Please note that every view has a viewModel by default. If you did not declare one the super factory will create one for you.
             However this viewModel is pretty much useless so you have to extend it with your own object.
             The default viewModel has a method called "i18n" which might be useful for internationalization.</p>
         <h3>type</h3>
@@ -223,8 +219,7 @@
         </pre>
     </article>
     <article id="partials">
-        <h2>partials (property)</h2>
-        <code>view.partials</code>
+        <h2>partials <span>(property) -- </span><code>view.partials</code></h2>
         <p>Mustache might use partial templates to render a template.
             You have a chance to declare them here.
             If you do so your partials will be automatically considered at template rendering.
@@ -254,8 +249,7 @@
         </pre>
     </article>
     <article id="$">
-        <h2>$ (method)</h2>
-        <code>view.$(selector)</code>
+        <h2>$ <span>(method) -- </span><code>view.$(selector)</code></h2>
         <p>The $ method proxies to jquery find so it can be used to find dom elements inside the area of the view</p>
         <h3>params</h3>
         <ul>
@@ -269,8 +263,7 @@
         </pre>
     </article>
     <article id="render">
-        <h2>render (method)</h2>
-        <code></code>
+        <h2>render <span>(method) -- </span><code>view.render()</code></h2>
         <p>Renders the view using a template and a view model and replace the content of the dom element (view.el or view.$el) of the view</p>
         <h3>params</h3>
         <p>None</p>
@@ -301,8 +294,7 @@
         </pre>
     </article>
     <article id="refresh">
-        <h2>refresh (method)</h2>
-        <code>view.refresh(data)</code>
+        <h2>refresh <span>(method) -- </span><code>view.refresh(data)</code></h2>
         <p>Re-renders the view with given data.
             The data will be merged with the view model of the view.
             Before using this you have to be sure that the view model of the view already cloned</p>
@@ -336,10 +328,9 @@
         </pre>
     </article>
     <article id="teardown">
-        <h2>teardown (method)</h2>
-        <code>view.teardown()</code>
+        <h2>teardown <span>(method)-- </span><code>view.teardown()</code></h2>
         <p>Tears down the view.
-            Detach the dom element of the view, and delete the reference to that so that the garbage collector is able to delete the dom element.
+            Detach the dom element of the view, and delete the reference to that so that the garbage collector is going to be able to clean up.
             This is important to avoid memory leakage.</p>
         <h3>params</h3>
         <p>None</p>
@@ -367,9 +358,8 @@
         </pre>
     </article>
     <article id="init">
-        <h2>init (method)</h2>
-        <code>view.init</code>
-        <p>Sets up the view object.
+        <h2>init <span>(method) -- </span><code>view.init</code></h2>
+        <p>Sets up the state of the view object.
             Sets the <a href="#viewModel">viewModel</a>, <a href="#className">className</a>, <a href="#$el">$el</a> and <a href="#el">el</a> if you defined the inside the factory
             Unlikely that you will execute this manually. Most probably the init function of your custom view factory will execute this. See the example below.</p>
         <h3>params</h3>
