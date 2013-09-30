@@ -166,13 +166,13 @@
             that.init = function (options) {
                 this.getProto().init.bind(this)(options);
 
-                var isDataArr;
+                var isDataObj;
 
-                isDataArr = Zonzabone.utils.arrOfObj(options.obj1); // false
-                isDataArr = Zonzabone.utils.arrOfObj(options.obj2); // false
-                isDataArr = Zonzabone.utils.arrOfObj(options.obj3); // false
-                isDataArr = Zonzabone.utils.arrOfObj(options.obj4); // false
-                isDataArr = Zonzabone.utils.arrOfObj(options.obj5); // true
+                isDataObj = Zonzabone.utils.validObj(options.obj1); // false
+                isDataObj = Zonzabone.utils.validObj(options.obj2); // false
+                isDataObj = Zonzabone.utils.validObj(options.obj3); // false
+                isDataObj = Zonzabone.utils.validObj(options.obj4); // false
+                isDataObj = Zonzabone.utils.validObj(options.obj5); // true
 
                 return this;
             };
