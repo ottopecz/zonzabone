@@ -713,6 +713,15 @@
         };
 
         /**
+         * Changes updates browser location bar and fires callback
+         * Same as 'push', but replaces current history entry instead
+         * @public
+         */
+        that.replace = function (url, state) {
+            window.history.replaceState(state, null, url);
+        };
+
+        /**
          * Loads the sub blocks in the area of this block (Should be used only if this is a block controller)
          * @param {app.events} broker Reference to the global event dispatcher
          * @param parent {app.controller} Reference to the parent controller
