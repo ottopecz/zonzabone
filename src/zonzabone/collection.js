@@ -162,7 +162,7 @@ define(function (require) {
          */
         that.without = function (b, func) {
 
-            return Zonzabone.utils.without(_arr, b.core(), func);
+            return utils.without(_arr, b.core(), func);
         };
 
         /**
