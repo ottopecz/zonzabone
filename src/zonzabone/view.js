@@ -7,7 +7,7 @@ define(function (require) {
     "use strict";
 
     var mustache = require('mustache'),
-        ui_super = require('ui_super');
+        ui_super = require('zonzabone/ui_super');
 
     return function (options) {
         var that = Object.create(ui_super());

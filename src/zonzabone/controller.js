@@ -6,9 +6,9 @@
 define(function (require) {
     "use strict";
 
-    var ui_super    = require('ui_super'),
-        view        = require('view'),
-        model       = require('model');
+    var ui_super    = require('zonzabone/ui_super'),
+        view        = require('zonzabone/view'),
+        model       = require('zonzabone/model');
 
     $.fn.extend({
         findClosest: function (sel) {

@@ -6,8 +6,8 @@
 define(function (require) {
     "use strict";
 
-    var ui_super    = require('ui_super'),
-        utils       = require('utils');
+    var ui_super    = require('zonzabone/ui_super'),
+        utils       = require('zonzabone/utils');
 
     return function (arr) {
         var that = Object.create(ui_super()),

@@ -6,7 +6,7 @@
 define(function (require) {
     "use strict";
 
-    var events = require('events');
+    var events = require('zonzabone/events');
 
     return function () {
         var that = events();
