@@ -21,25 +21,25 @@
 <article>
     <h2>General</h2>
     <p>There is a difference between block controllers and plain controllers.
-        <strong>Block controllers</strong> are loaded by a parent controller and they always have a piece of dom element which they break down and pass to one or more views.
+        <strong>Block controllers</strong> are loaded by a parent controller and they always have a DOM element which they break down to pass to one or more views.
         <strong>Plain controllers</strong> are usually instantiated manually (unlike block controllers) and they are responsible for a relatively small part of a block.
-        It's a good practice that the dynamically created dom is controlled by plain controllers.
-        In this case you don't need pass dom to the controllers but rather the controlled views will create that.
+        It's a good practice that the dynamically created element is controlled by plain controllers.
+        In this case you don't need to pass the element to the controllers - the controlled views will create that.
         Also it's possible that a plain controller doesn't control any views but does something else.</p>
 </article>
 <article  id="init">
     <h2>init <span>(method) -- </span><code>controller.init(options)</code></h2>
     <p>Initializes the controller. If model and/or view are passed in the arguments <strong>init</strong> will create model and/or view members for the controller.
-        if model and/or view was created beforehand they going to get overridden.
+        if model and/or view was previously created they will be replaced.
         <strong>Init</strong> is also able to create model and/or view if they were not defined in the factory previously or passed as an argument.
-        <strong>Init</strong> will grab every passed argument and create a basic model using them. Array of objects are special they will be wrapped up in a collection and put into the model.
-        Also if there is any dom element(el) passed to the factory init will automatically create a view around that. If there are browser events defined in the <a href="#events">events</a> property they will be delegated or bound by <strong>init</strong></strong></p>
-    <p>Note: The <strong>init</strong> method of the basic type is definitely something you might wan to execute in in the scope of the descendant controllers.</p>
+        <strong>Init</strong> will take the arguments and use them to create a basic model. Arrays of objects are special - they will be wrapped up in a collection to put into the model.
+        Also if any element(el) passed to the factory, init will automatically use them to create a view. If there are browser events defined in the <a href="#events">events</a> property they will be delegated or bound by <strong>init</strong></p>
+    <p>Note: The <strong>init</strong> method of the basic type is definitely something you might want to execute in the scope of the descendant controllers.</p>
     <h3>params (examples)</h3>
     <ul>
         <li><strong>model:</strong> Model for the controller.</li>
         <li><strong>view:</strong> View for the controller.</li>
-        <li><strong>el:</strong> The root of the dom part that the controller controls. Block controllers must be always passed with this</li>
+        <li><strong>el:</strong> The root of the DOM part that the controller controls. Block controllers must be always passed with this</li>
         <li><strong>any other</strong> Any other argument will be automatically entered into the model</li>
     </ul>
     <h3>returns</h3>
@@ -65,7 +65,7 @@
         Second, third etc blocks needed to be loaded by their direct parent controller.
         To decide if a block is first-level or not <strong>findClosest</strong> will be used.
         Please note that <strong>loadBlocks</strong> works only for block controllers.
-        Which means a piece of dom should be passed to the factory as a parameter(el)</p>
+        Which means a piece of DOM should be passed to the factory as a parameter(el)</p>
     <h3>params</h3>
     <ul>
         <li><strong>broker:</strong> Reference to event broker. Note: Broker should be a singleton so this has to be really a reference (The root controller will create the broker originally)</li>
@@ -92,7 +92,7 @@
 </article>
 <article id="events">
     <h2>events <span>(property) -- </span><code>controller.events</code></h2>
-    <p>!!!This works only if you passed a dom element as a parameter (el).!!! So Probably your controller is a block controller.
+    <p>!!!This works only if you passed a DOM element as a parameter (el).!!! So Probably your controller is a block controller.
         The <strong>events</strong> is a javascript object which describes browser events to delegate. Note: You must understand the difference between event delegation and event binding.
         The init function of the super factory (controller.js) will read this object so if you want these events to get delegated you have to execute the init function of the super factory (controller.js) in the sub factory.
         - Most probably in the init function.</p>
@@ -102,7 +102,7 @@
         <li>The <strong>key</strong> of the object member should be the browser event and css path you want to delegate to.
             - Exactly like Backbone. Note that if you don't specify a css path you will bind the event to the root element of the block controller</li>
         <li><strong>handler</strong>: What you describe in <strong>handler</strong> will handle the event when it happens</li>
-        <li><strong>ctx</strong>: !!!optional!!! What you describe in <strong>ctx</strong> will be used as a scope for the handler. If you don't specify this the current scope will be used instead</li>
+        <li><strong>ctx</strong>: !!!optional!!! What you pass in <strong>ctx</strong> will be used as a scope for the handler. Ifnot specified, the current scope will be used.</li>
     </ul>
     <h3>example usage</h3>
     <pre>
