@@ -1,12 +1,14 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date: 09/09/2013
- * @require window.Zonzabone
- * @require window.bdd
  */
-/*global window, module, test, sinon, asyncTest, stop, start, deepEqual, equal, notDeepEqual, notStrictEqual, ok, strictEqual, throws, expect*/
-(function (zonzabone, bdd) {
+/*global bdd, define, module, test, sinon, asyncTest, stop, start, deepEqual, equal, notDeepEqual, notStrictEqual, ok, strictEqual, throws, expect*/
+define(function (require) {
     "use strict";
+
+    var collection = require('collection');
+        require('bdd');
+
 
     module('Collection Tests');
 
@@ -27,7 +29,7 @@
     });
 
     var collInsWithMultipleElmnts = function () {
-            return zonzabone.collection([{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}, {"key3": "value3", "keyCommon": "valueCommon"}]);
+            return collection([{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}, {"key3": "value3", "keyCommon": "valueCommon"}]);
         },
         removeWithParsAsKeyVal = function (key, value) {
             bdd.given.removeWhere(key, value);
@@ -49,4 +51,4 @@
                 equal(el.keyCustom, value, '');
             });
         };
-}(window.Zonzabone, window.bdd));
+});

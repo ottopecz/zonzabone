@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>QUnit Test Suite</title>
-    <link rel="stylesheet" href="lib/qunit/qunit.css">
+<meta charset="UTF-8">
+<title>QUnit Test Suite</title>
+
+<!-- QUnit -->
+<link rel="stylesheet" href="lib/qunit/qunit.css">
+<script type="text/javascript" src="lib/qunit/qunit.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery.min"></script>
+<script type="text/javascript">
+    QUnit.config.autostart = false;
+</script>
+
+<!-- TestSwarm -->
+<script src="http://dev-hson-1:90/js/inject.js"></script>
+
+<!-- Require -->
+<script id="js_entry"
+        data-main="all_tests.js"
+        src="lib/require.js"></script>
 </head>
 <body>
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
-<!-- Libs -->
-<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="lib/mustache.js"></script>
-<script type="text/javascript" src="lib/bdd.js"></script>
-<script type="text/javascript" src="lib/sinon.js"></script>
-<script type="text/javascript" src="lib/qunit/qunit.js"></script>
-<!-- TestSwarm -->
-<script src="http://dev-hson-1:90/js/inject.js"></script>
-<!-- What To Test -->
-<script type="text/javascript" src="../../zonzabone.js"></script>
-<!-- With Unit Tests -->
-<script type="text/javascript" src="utils.js"></script>
-<script type="text/javascript" src="collection.js"></script>
 </body>
 </html>
 
