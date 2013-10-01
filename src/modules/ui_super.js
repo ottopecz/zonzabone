@@ -1,16 +1,15 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
- * @require Zonzabone.events
  */
-/*global window*/
-(function (Zonzabone) {
+/*global define*/
+define(function (require) {
     "use strict";
 
-    Zonzabone = Zonzabone || {};
+    var events = require('events');
 
-    Zonzabone.ui_super = function () {
-        var that = Zonzabone.events();
+    return function () {
+        var that = events();
 
         /**
          * Returns the object being up on the prototype chain
@@ -22,4 +21,4 @@
 
         return that;
     };
-}(window.Zonzabone));
+});

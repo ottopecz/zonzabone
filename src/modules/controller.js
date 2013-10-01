@@ -1,16 +1,14 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
- * @require window.jQuery
- * @require Zonzabone.ui_super
- * @require Zonzabone.view
- * @require Zonzabone.model
  */
-/*global window, require*/
-(function ($, Zonzabone) {
+/*global define*/
+define(function (require) {
     "use strict";
 
-    Zonzabone = Zonzabone || {};
+    var ui_super    = require('ui_super'),
+        view        = require('view'),
+        model       = require('model');
 
     $.fn.extend({
         findClosest: function (sel) {
@@ -28,12 +26,12 @@
         }
     });
 
-    Zonzabone.controller = function (options) {
+   return function (options) {
         /** ------- ---- */
         /** Private area */
         /** ------- ---- */
 
-        var that = Object.create(Zonzabone.ui_super());
+        var that = Object.create(ui_super());
 
         /** ------ ---- */
         /** Public area */
@@ -89,7 +87,7 @@
                         } else if (broker) { // When a root block views get instantiated.
                             options.broker = broker;
                         } else { // Secure fallback. (This should not happen.)
-                            options.broker = Object.create(Zonzabone.ui_super);
+                            options.broker = Object.create(ui_super);
                         }
                         var block = block_contr(options);
                         options.broker.trigger('base:block_loaded');
@@ -126,7 +124,7 @@
                 eventSplitter = /^(\S+)\s*(.*)$/;
 
             // Creating basic view if that's not defined in the sub factory
-            this.view = this.view || Zonzabone.view({ "el": options.el });
+            this.view = this.view || view({ "el": options.el });
 
             // Creating a model for the controller if that's not defined in the sub factory
             if (options && !options.model && !this.model) { // When the controller is not initialized with any model (Should happen if the sub factory produces block controllers)
@@ -135,7 +133,7 @@
                 delete modelOpts.broker;
                 delete modelOpts.block;
 
-                this.model = Zonzabone.model(modelOpts);
+                this.model = model(modelOpts);
             } else if (options && options.model && !this.model) { // When the controller is initialized with a model
                 this.model = options.model;
             }
@@ -163,4 +161,4 @@
 
         return that;
     };
-}(window.jQuery, window.Zonzabone));
+});

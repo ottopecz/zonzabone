@@ -1,18 +1,16 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/06/2013
- * @require window.jQuery
- * @require Zonzabone.ui_super
- * @require Zonzabone.utils
  */
-/*global window*/
-(function ($, Zonzabone) {
+/*global define*/
+define(function (require) {
     "use strict";
 
-    Zonzabone = Zonzabone || {};
+    var ui_super    = require('ui_super'),
+        utils       = require('utils');
 
-    Zonzabone.collection = function (arr) {
-        var that = Object.create(Zonzabone.ui_super()),
+    return function (arr) {
+        var that = Object.create(ui_super()),
 
         /**
          * Core of the collection
@@ -94,9 +92,9 @@
          * @public
          */
         that.add = function (toAdd) {
-            if (Zonzabone.utils.validObj(toAdd)) {
+            if (utils.validObj(toAdd)) {
                 _arr.push(toAdd);
-            } else if (Zonzabone.utils.arrOfObj(toAdd)) {
+            } else if (utils.arrOfObj(toAdd)) {
                 _arr = _arr.concat(toAdd);
             }
         };
@@ -113,7 +111,7 @@
         that.removeWhere = function () {
             var arr = Array.prototype.slice.call(arguments), filters, ret;
 
-            if (arr.length === 1 && Zonzabone.utils.validObj(arr[0])) { // When multiple filters passed in an obj
+            if (arr.length === 1 && utils.validObj(arr[0])) { // When multiple filters passed in an obj
                 filters = arr[0];
             } else if (arr.length === 2 && typeof arr[0] === 'string') { // When one key value pair passed not wrapped in obj
                 filters = {};
@@ -178,4 +176,4 @@
 
         return that;
     };
-}(window.jQuery, window.Zonzabone));
+});

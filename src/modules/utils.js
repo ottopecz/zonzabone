@@ -1,13 +1,10 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 17/06/2013
- * @require window.jQuery
  */
-/*global window*/
-(function ($, Zonzabone) {
+/*global define*/
+define(function () {
     "use strict";
-
-    Zonzabone = Zonzabone || {};
 
     var that = {};
 
@@ -112,5 +109,5 @@
         return c;
     };
 
-    Zonzabone.utils = that;
-}(window.jQuery, window.Zonzabone));
+    return that;
+});

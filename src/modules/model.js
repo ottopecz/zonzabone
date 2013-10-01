@@ -1,19 +1,17 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
- * @require window.jQuery
- * @require Zonzabone.ui_super
- * @require Zonzabone.collection
- * @require Zonzabone.utils
  */
-/*global window*/
-(function ($, Zonzabone) {
+/*global define*/
+define(function (require) {
     "use strict";
 
-    Zonzabone = Zonzabone || {};
+    var ui_super    = require('ui_super'),
+        collection  = require('collection'),
+        utils       = require(utils);
 
-    Zonzabone.model = function (options) {
-        var that = Object.create(Zonzabone.ui_super()),
+    return function (options) {
+        var that = Object.create(ui_super()),
 
         /**
          * Core of the model
@@ -63,8 +61,8 @@
                 if (options.hasOwnProperty(key)) {
                     if (typeof options[key] === 'function') { // Option is a function
                         this[key] = options[key];
-                    } else if (Zonzabone.utils.arrOfObj(options[key])) { // Option is an array populated by valid objects
-                        _attributes[key] = Zonzabone.collection(options[key]);
+                    } else if (utils.arrOfObj(options[key])) { // Option is an array populated by valid objects
+                        _attributes[key] = collection(options[key]);
                     } else { // Fallback
                         _attributes[key] = options[key];
                     }
@@ -76,4 +74,4 @@
 
         return that.init(options);
     };
-}(window.jQuery, window.Zonzabone));
+});

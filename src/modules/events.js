@@ -1,15 +1,12 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 17/06/2013
- * @require Zonzabone
  */
-/*global window*/
-(function (Zonzabone) {
+/*global define*/
+define(function () {
     "use strict";
 
-    Zonzabone = Zonzabone || {};
-
-    Zonzabone.events = function () {
+    return function () {
         var that = {},
             _topics = {},
             _execHandler = function (subscriber, args) {
@@ -104,4 +101,4 @@
 
         return that;
     };
-}(window.Zonzabone));
+});

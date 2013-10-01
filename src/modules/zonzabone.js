@@ -2,13 +2,17 @@
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 23/09/2013
  */
-/*global window, define*/
-(function (window) {
+/*global define*/
+define(function (require) {
     "use strict";
 
-    window.Zonzabone = window.Zonzabone || {};
-
-    if (typeof define === "function" && define.amd) {
-        define("zonzabone", [], function () { return window.Zonzabone; });
-    }
-}(window));
+    return {
+        "utils"       : require('utils'),
+        "events"      : require('events'),
+        "ui_super"    : require('ui_super'),
+        "collection"  : require('collection'),
+        "model"       : require('model'),
+        "view"        : require('view'),
+        "controller"  : require('controller')
+    };
+});

@@ -1,28 +1,16 @@
 /**
  * @author Otto Pecz - otto.pecz@hogarthww.com
  * @date 21/05/2013
- * @require window.jQuery
- * @require window.Mustache
- * @require Zonzabone.ui_super
  */
-/*global window, define, require*/
-(function ($, Zonzabone) {
+/*global define*/
+define(function (require) {
     "use strict";
 
-    Zonzabone = Zonzabone || {};
+    var mustache = require('mustache'),
+        ui_super = require('ui_super');
 
-    var mustache;
-
-    if (typeof define === "function" && define.amd) {
-        require(['mustache'], function (m) {
-            mustache = m;
-        });
-    } else {
-        mustache = window.Mustache;
-    }
-
-    Zonzabone.view = function (options) {
-        var that = Object.create(Zonzabone.ui_super());
+    return function (options) {
+        var that = Object.create(ui_super());
 
         /**
          * jQuery wrapped dom element of the view
@@ -139,4 +127,4 @@
 
         return that.init();
     };
-}(window.jQuery, window.Zonzabone));
+});
