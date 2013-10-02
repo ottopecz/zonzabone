@@ -1,2 +1,2 @@
 #!/bin/bash
-r.js -o
+r.js -o app.build.config.js
