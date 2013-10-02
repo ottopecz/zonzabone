@@ -8,6 +8,7 @@ define(function (require) {
 
     var collection = require('zonzabone/collection');
         require('bdd');
+        require('polyfills');
 
 
     module('Collection Tests');
@@ -17,25 +18,44 @@ define(function (require) {
     });
 
     test('removeWhere', function () {
-        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithParsAsObj, {"key3": "value3"}).THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithObj, {"key3": "value3"}).THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
     });
 
     test('removeWhere', function () {
-        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithParsAsObj, {"key3": "value3", "keyCommon": "valueCommon"}).THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithObj, {"key3": "value3", "keyCommon": "valueCommon"}).THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
     });
 
     test('removeWhere', function () {
-        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithParsAsKeyVal, "key3", "value3").THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithKeyVal, "key3", "value3").THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
+    });
+
+    test('getWhere', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(getElmntsWithKeyVal, "key1", "value1").THEN(resultIs, [{"key1": "value1"}]);
+    });
+
+    test('getWhere', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(getElmntsWithKeyVal, "key3", "value4").THEN(resultIs, []);
+    });
+
+    test('getWhere', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(getElmntsWithKeyVal, "keyCommon", "valueCommon").THEN(resultIs, [
+            {"key2": "value2", "keyCommon": "valueCommon"},
+            {"key3": "value3", "keyCommon": "valueCommon"}
+        ]);
     });
 
     var collInsWithMultipleElmnts = function () {
-            return collection([{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}, {"key3": "value3", "keyCommon": "valueCommon"}]);
+            return collection([
+                {"key1": "value1"},
+                {"key2": "value2", "keyCommon": "valueCommon"},
+                {"key3": "value3", "keyCommon": "valueCommon"}
+            ]);
         },
-        removeWithParsAsKeyVal = function (key, value) {
+        removeWithKeyVal = function (key, value) {
             bdd.given.removeWhere(key, value);
             return bdd.given;
         },
-        removeWithParsAsObj = function (obj) {
+        removeWithObj = function (obj) {
             bdd.given.removeWhere(obj);
             return bdd.given;
         },
@@ -48,7 +68,18 @@ define(function (require) {
         },
         keyChangedOnAllElmntsTo = function (value) {
             bdd.when.forEach(function (el) {
-                equal(el.keyCustom, value, '');
+                equal(el.keyCustom, value, 'The key has changed on every element of collection');
+            });
+        },
+        getElmntsWithKeyVal = function (key, value) {
+            return bdd.given.getWhere(key, value);
+        },
+        resultIs = function (expResult) {
+            equal(bdd.when.length, expResult.length, 'The result has one element');
+            ok(bdd.when.constructor === Array, 'The result is an array');
+            Object.keys(expResult).forEach(function (e) {
+                deepEqual(bdd.when[e], expResult[e], 'The value with the given key is returned');
+                ok(Object.keys(bdd.when)[e], 'The result has a key like specified in the arguments');
             });
         };
 });

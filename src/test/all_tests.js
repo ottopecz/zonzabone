@@ -9,7 +9,8 @@
                 "bdd"               : 'test/lib/bdd',
                 "mustache"          : 'test/lib/mustache',
                 "sinon"             : 'test/lib/sinon',
-                "mockjax"           : 'test/lib/jquery/jquery.mockjax'
+                "mockjax"           : 'test/lib/jquery/jquery.mockjax',
+                "polyfills"         : 'test/lib/polyfills'
             }
         };
 
