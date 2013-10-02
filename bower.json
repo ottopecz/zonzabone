@@ -1,11 +1,22 @@
 {
   "name": "zonzabone",
-  "main": "zonzabone.js",
+  "main": "src/zonzabone.js",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "docs",
     "app.build.config.js"
-  ]
+  ],
+  "dependencies": {
+    "mustache": "0.7.2",
+    "requirejs": "2.1.8"
+  },
+  "devDependencies": {
+    "jquery": "2.0.3",
+    "jquery-mockjax": "1.5.3",
+    "bdd": "git://github.com/hogarthww/bdd.git#0.0.3",
+    "sinon": "git://github.com/hogarthww/Sinon.JS.git#v1.7.3-with-built",
+    "qunit": "1.12.0"
+  }
 }
