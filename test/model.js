@@ -2,8 +2,8 @@
 define(function (require) {
     "use strict";
 
-    var collection = require('zonzabone/model');
-        require('bdd');
+    var collection = require('zonzabone/model'),
+        bdd        = require('bdd');
         require('polyfills');
 
 
