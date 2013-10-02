@@ -36,16 +36,14 @@ define(function (require) {
          */
         that.set = function (key, value) {
 
-            console.log('set(' + key + ', ' + value + ')');
-
             if (_attributes[key] !== value) {
 
                 _attributes[key] = value;
 
-                options.broker.trigger('change:' + key, value);
+                that.trigger('change:' + key, value);
             }
 
-            return this;
+            return that;
         };
 
         /**

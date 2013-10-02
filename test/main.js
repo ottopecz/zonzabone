@@ -1,7 +1,7 @@
 /*global require, QUnit*/
 require.config({
     'baseUrl'       : '../',
-    'waitSeconds'   : 5,
+    'waitSeconds'   : 2,
     'urlArgs'       : 'bust=' + (new Date()).getTime(),
     'paths' : {
         'zonzabone' : 'src/zonzabone',
@@ -13,11 +13,12 @@ require.config({
         'polyfills' : 'lib/polyfills'
     },
     'shim' : {
-        'mockjax'   : { deps : ['jquery'] }
+        'mockjax'   : ['jquery']
     },
     'deps' : [
         'jquery',
         'test/collection',
+        'test/model',
         'test/utils'
     ],
     'callback'      : function () {
