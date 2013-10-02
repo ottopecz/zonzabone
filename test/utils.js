@@ -100,4 +100,49 @@ define(function (require) {
         equal(func('sides').length, 3, 'No sides match in a and b');
         equal(func('shape').length, 3, 'No shapes exist in a which exist in b');
     });
+
+    test('shallowClone', function () {
+        var data,
+            clone,
+            doAssertionsWhenDataObj = function () {
+                var keys = Object.keys(data);
+
+                equal(Object.keys(clone).length, Object.keys(data).length);
+
+                keys.forEach(function (e) {
+                    ok(clone[e], 'The clone has every key what the source had');
+                    equal(clone[e], data[e], 'The value of the keys are the same like in the source');
+                });
+            },
+            doAssertionsWhenDataArr = function () {
+                equal(clone.length, data.length);
+
+                data.forEach(function (obj, i) {
+                    var keys = Object.keys(obj);
+
+                    keys.forEach(function (e) {
+                        ok(clone[i][e], 'The clone has every key what the source had');
+                        equal(clone[i][e], obj[e], 'The value of the keys are the same like in the source');
+                    });
+                });
+            };
+
+        data = {}; clone = utils.shallowClone(data);
+        doAssertionsWhenDataObj();
+
+        data = {"key1": "value1"}; clone = utils.shallowClone(data);
+        doAssertionsWhenDataObj();
+
+        data = {"key1": "value1", "key2": "value2"}; clone = utils.shallowClone(data);
+        doAssertionsWhenDataObj();
+
+        data = []; clone = utils.shallowClone(data);
+        doAssertionsWhenDataArr();
+
+        data = [{"key1": "value1"}]; clone = utils.shallowClone(data);
+        doAssertionsWhenDataArr();
+
+        data = [{"key1": "value1"}, {"key2": "value2"}]; clone = utils.shallowClone(data);
+        doAssertionsWhenDataArr();
+    });
 });

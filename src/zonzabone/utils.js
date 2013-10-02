@@ -9,21 +9,22 @@ define(function () {
     var that = {};
 
     /**
-     * Shortcut to shallow clone an object
-     * @param obj {Object} Object to clone
-     * @returns {Object}
+     * Shortcut to clone an object
+     * @param arg {Array || Object} Array or Object to clone
+     * @returns {Array || Object}
      */
-    that.shallowClone = function (obj) {
-        return $.extend({}, obj);
-    };
+    that.shallowClone = function (arg) {
+        if (arg.constructor === Array) {
+            var i, ret = [];
 
-    /**
-     * Shortcut to deep clone an object
-     * @param obj {Object} Object to clone
-     * @returns {Object}
-     */
-    that.deepClone = function (obj) {
-        return $.extend(true, {}, obj);
+            for (i = 0; i < arg.length; i++) {
+                ret.push($.extend({}, arg[i]));
+            }
+
+            return ret;
+        } else {
+            return $.extend({}, arg);
+        }
     };
 
     /**

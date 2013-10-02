@@ -6,7 +6,8 @@
 define(function (require) {
     "use strict";
 
-    var collection = require('zonzabone/collection');
+    var collection  = require('zonzabone/collection'),
+        utils       = require('zonzabone/utils');
         require('bdd');
         require('polyfills');
 
@@ -44,12 +45,17 @@ define(function (require) {
         ]);
     });
 
-    var collInsWithMultipleElmnts = function () {
-            return collection([
-                {"key1": "value1"},
-                {"key2": "value2", "keyCommon": "valueCommon"},
-                {"key3": "value3", "keyCommon": "valueCommon"}
-            ]);
+    test('add', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(addNewElements, [{"key4": "value4"}]).THEN(collGrowsWith, [{"key4": "value4"}]);
+    });
+
+    var data = [
+            {"key1": "value1"},
+            {"key2": "value2", "keyCommon": "valueCommon"},
+            {"key3": "value3", "keyCommon": "valueCommon"}
+        ],
+        collInsWithMultipleElmnts = function () {
+            return collection(utils.shallowClone(data));
         },
         removeWithKeyVal = function (key, value) {
             bdd.given.removeWhere(key, value);
@@ -81,5 +87,11 @@ define(function (require) {
                 deepEqual(bdd.when[e], expResult[e], 'The value with the given key is returned');
                 ok(Object.keys(bdd.when)[e], 'The result has a key like specified in the arguments');
             });
+        },
+        addNewElements = function (newElements) {
+            return bdd.given.add(newElements);
+        },
+        collGrowsWith = function (expElements) {
+            equal(bdd.when.length(), data.length + expElements.length, '');
         };
 });

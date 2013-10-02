@@ -97,6 +97,8 @@ define(function (require) {
             } else if (utils.arrOfObj(toAdd)) {
                 _arr = _arr.concat(toAdd);
             }
+
+            return this;
         };
 
         /**
