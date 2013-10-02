@@ -26,7 +26,7 @@ define(function (require) {
         }
     });
 
-   return function (options) {
+    return function (options) {
         /** ------- ---- */
         /** Private area */
         /** ------- ---- */
