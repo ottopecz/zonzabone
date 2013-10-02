@@ -35,7 +35,15 @@ define(function (require) {
          * @returns {app.model}
          */
         that.set = function (key, value) {
-            _attributes[key] = value;
+
+            console.log('set(' + key + ', ' + value + ')');
+
+            if (_attributes[key] !== value) {
+
+                _attributes[key] = value;
+
+                options.broker.trigger('change:' + key, value);
+            }
 
             return this;
         };

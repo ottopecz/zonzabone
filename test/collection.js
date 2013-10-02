@@ -6,7 +6,7 @@
 define(function (require) {
     "use strict";
 
-    var collection = require('zonzabone/collection');
+    var collection = require('../src/zonzabone/collection');
         require('bdd');
         require('polyfills');
 
