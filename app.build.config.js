@@ -1,6 +1,6 @@
 ({
-    "baseUrl": ".",
-    paths: {
+    "baseUrl": "src",
+    "paths": {
         "mustache": "empty:"
     },
     "name": "zonzabone",
