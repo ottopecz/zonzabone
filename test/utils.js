@@ -7,7 +7,7 @@
 define(function (require) {
     "use strict";
 
-    var utils   = require('../src/zonzabone/utils'),
+    var utils   = require('zonzabone/utils'),
         data = {
             "without": {
 

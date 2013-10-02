@@ -10,33 +10,8 @@
 <!-- TestSwarm -->
 <script src="http://dev-hson-1:90/js/inject.js"></script>
 
-<script>
-    var require = {
-        'baseUrl'       : '../src/',
-        'waitSeconds'   : 5,
-        'urlArgs'       : 'bust=' + (new Date()).getTime(),
-        'paths' : {
-            'jquery'    : '../lib/jquery/jquery.min',
-            'bdd'       : '../lib/bdd',
-            'mustache'  : '../lib/mustache',
-            'sinon'     : '../lib/sinon',
-            'mockjax'   : '../lib/jquery/jquery.mockjax',
-            'polyfills' : '../lib/polyfills',
-            'qunit'     : '../lib/qunit/qunit'
-        },
-        'shim' : {
-            'qunit'     : { deps : ['jquery'] }
-        },
-        'deps'          : ['jquery', 'qunit', '../test/all_tests'],
-        'callback'      : function () {
-            $.ajaxSetup({ contentType: 'application/json', 'async': false });
-            QUnit.load();
-        }
-    };
-</script>
-
 <!-- Require -->
-<script id="js_entry" src="../lib/require.js"></script>
+<script id="js_entry" src="../lib/require.js" data-main="main"></script>
 </head>
 <body>
 <div id="qunit"></div>
