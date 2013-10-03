@@ -40,10 +40,10 @@ define(function (require) {
 
                 _attributes[key] = value;
 
-                that.trigger('change:' + key, value);
+                this.trigger('change:' + key, value);
             }
 
-            return that;
+            return this;
         };
 
         /**

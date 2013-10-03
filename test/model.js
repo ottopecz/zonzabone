@@ -5,8 +5,6 @@ define(function (require) {
     var model      = require('zonzabone/model'),
         bdd        = require('bdd');
 
-    require('polyfills');
-
     module('Model Tests');
 
     test('set', function () {
@@ -47,8 +45,6 @@ define(function (require) {
         },
 
         changeHandler = function () {
-
-            console.log('changeHandler()');
 
             bdd.given.set('eventTriggered', true);
         },
