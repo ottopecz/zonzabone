@@ -20,7 +20,7 @@ require.config({
 require([
     'jquery',
     'zonzabone'
-], function () {
+], function ($) {
     require([
         'test/collection',
         'test/model',
