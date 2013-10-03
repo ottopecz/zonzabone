@@ -14,16 +14,19 @@ require.config({
     },
     'shim' : {
         'mockjax'   : ['jquery']
-    },
-    'deps' : [
-        'jquery',
-        'zonzabone',  // This is needed for the built zonzabone because tests deep-require modules.
+    }
+});
+
+require([
+    'jquery',
+    'zonzabone'
+], function () {
+    require([
         'test/collection',
         'test/model',
         'test/utils'
-    ],
-    'callback'      : function () {
+    ], function () {
         $.ajaxSetup({ contentType: 'application/json', 'async': false });
         QUnit.start();
-    }
+    });
 });
