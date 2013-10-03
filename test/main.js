@@ -4,7 +4,7 @@ require.config({
     'waitSeconds'   : 2,
     'urlArgs'       : 'bust=' + (new Date()).getTime(),
     'paths' : {
-        'zonzabone' : 'src/zonzabone',
+        'zonzabone' :  window.location.hash === "#built" ? 'zonzabone' : 'src/zonzabone',
         'jquery'    : 'bower_components/jquery/jquery',
         'bdd'       : 'bower_components/bdd/bdd',
         'mustache'  : 'bower_components/mustache/mustache',
@@ -17,6 +17,7 @@ require.config({
     },
     'deps' : [
         'jquery',
+        'zonzabone',  // This is needed for the built zonzabone because tests deep-require modules.
         'test/collection',
         'test/model',
         'test/utils'
