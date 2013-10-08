@@ -92,10 +92,16 @@ define(function (require) {
          * @public
          */
         that.add = function (toAdd) {
-            if (utils.validObj(toAdd)) {
+            var isAdded = false;
+
+            if (isAdded = utils.validObj(toAdd)) {
                 _arr.push(toAdd);
-            } else if (utils.arrOfObj(toAdd)) {
+            } else if (isAdded = utils.arrOfObj(toAdd)) {
                 _arr = _arr.concat(toAdd);
+            }
+
+            if (isAdded) {
+                that.trigger('add');
             }
 
             return this;
@@ -130,6 +136,10 @@ define(function (require) {
                 array.splice(i, 1);
                 return true;
             });
+
+            if (ret.length) {
+                that.trigger('remove');
+            }
 
             return ret;
         };

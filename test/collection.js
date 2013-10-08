@@ -30,6 +30,18 @@ define(function (require) {
         bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithKeyVal, "key3", "value3").THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
     });
 
+    test('removeWhere', function () {
+        bdd.GIVEN(collectionInstanceWithMultipleElementsAndRemoveHandler, eventHandler).WHEN(removeWithObj, {"key3": "value3"}).THEN(removeEventIsTriggered);
+    });
+
+    test('removeWhere', function () {
+        bdd.GIVEN(collectionInstanceWithMultipleElementsAndRemoveHandler, eventHandler).WHEN(removeWithObj, {"keyX": "valueX"}).THEN(removeEventIsNotTriggered);
+    });
+
+    test('removeWhere', function () {
+        bdd.GIVEN(collectionInstanceWithMultipleElementsAndRemoveHandler, eventHandler).WHEN(removeWithObj, null).THEN(removeEventIsNotTriggered);
+    });
+
     test('getWhere', function () {
         bdd.GIVEN(collInsWithMultipleElmnts).WHEN(getElmntsWithKeyVal, "key1", "value1").THEN(resultIs, [{"key1": "value1"}]);
     });
@@ -49,6 +61,22 @@ define(function (require) {
         bdd.GIVEN(collInsWithMultipleElmnts).WHEN(addNewElements, [{"key4": "value4"}]).THEN(collGrowsWith, [{"key4": "value4"}]);
     });
 
+    test('add', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(addNewElements, [{"key4": "value4"}, {"key5": "value5"}]).THEN(collItemsHas, 5);
+    });
+
+    test('add', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(addNewElements, {"key4": "value4"}).THEN(collItemsHas, 4);
+    });
+
+    test('add', function () {
+        bdd.GIVEN(collectionInstanceWithMultipleElementsAndAddHandler, eventHandler).WHEN(addNewElements, [{"key4": "value4"}]).THEN(addEventIsTriggered);
+    });
+
+    test('add', function () {
+        bdd.GIVEN(collectionInstanceWithMultipleElementsAndAddHandler, eventHandler).WHEN(addNewInvalidElements).THEN(addEventIsNotTriggered);
+    });
+
     var data = [
             {"key1": "value1"},
             {"key2": "value2", "keyCommon": "valueCommon"},
@@ -57,6 +85,26 @@ define(function (require) {
         collInsWithMultipleElmnts = function () {
             return collection(utils.shallowClone(data));
         },
+        collectionInstanceWithMultipleElementsAndAddHandler = function (handler) {
+
+            var coll = collection(utils.shallowClone(data));
+
+            coll.on('add', handler);
+
+            return coll;
+        },
+        eventHandler = function () {
+
+            bdd.given.eventTriggered = true;
+        },
+        collectionInstanceWithMultipleElementsAndRemoveHandler = function (handler) {
+
+            var coll = collection(utils.shallowClone(data));
+
+            coll.on('remove', handler);
+
+            return coll;
+        },
         removeWithKeyVal = function (key, value) {
             bdd.given.removeWhere(key, value);
             return bdd.given;
@@ -64,6 +112,9 @@ define(function (require) {
         removeWithObj = function (obj) {
             bdd.given.removeWhere(obj);
             return bdd.given;
+        },
+        collItemsHas = function (count) {
+            equal(bdd.when.length(), count, 'The proper number of elements are added to the collection');
         },
         collContains = function (arr) {
             equal(bdd.when.length(), arr.length, 'The proper number of elements was removed from the collection');
@@ -90,6 +141,57 @@ define(function (require) {
         },
         addNewElements = function (newElements) {
             return bdd.given.add(newElements);
+        },
+        addNewInvalidElements = function () {
+            return bdd.given.add(null);
+        },
+        removeEventIsTriggered = function () {
+
+            stop();
+
+            setTimeout(function () {
+
+                strictEqual(bdd.given.eventTriggered, true, 'Event is triggered on removal of item');
+
+                start();
+
+            }, 100);
+        },
+        removeEventIsNotTriggered = function () {
+
+            stop();
+
+            setTimeout(function () {
+
+                notStrictEqual(bdd.given.eventTriggered, true, 'Event is not triggered on invalid removal of item');
+
+                start();
+
+            }, 100);
+        },
+        addEventIsTriggered = function () {
+
+            stop();
+
+            setTimeout(function () {
+
+                strictEqual(bdd.given.eventTriggered, true, 'Event is triggered on addition of new item');
+
+                start();
+
+            }, 100);
+        },
+        addEventIsNotTriggered = function () {
+
+            stop();
+
+            setTimeout(function () {
+
+                notStrictEqual(bdd.given.eventTriggered, true, 'Event is not triggered on addition of an invalid item');
+
+                start();
+
+            }, 100);
         },
         collGrowsWith = function (expElements) {
             equal(bdd.when.length(), data.length + expElements.length, '');
