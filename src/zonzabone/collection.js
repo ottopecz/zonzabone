@@ -94,14 +94,16 @@ define(function (require) {
         that.add = function (toAdd) {
             var isAdded = false;
 
-            if (isAdded = utils.validObj(toAdd)) {
+            if (utils.validObj(toAdd)) {
+                isAdded = true;
                 _arr.push(toAdd);
-            } else if (isAdded = utils.arrOfObj(toAdd)) {
+            } else if (utils.arrOfObj(toAdd)) {
+                isAdded = true;
                 _arr = _arr.concat(toAdd);
             }
 
             if (isAdded) {
-                that.trigger('add');
+                that.trigger('add', toAdd, that);
             }
 
             return this;
@@ -138,7 +140,7 @@ define(function (require) {
             });
 
             if (ret.length) {
-                that.trigger('remove');
+                that.trigger('remove', ret, that, filters);
             }
 
             return ret;
