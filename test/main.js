@@ -23,8 +23,11 @@ require([
 ], function ($) {
     require([
         'test/collection',
+        'test/controller',
+        'test/events',
         'test/model',
-        'test/utils'
+        'test/utils',
+        'test/view',
     ], function () {
         $.ajaxSetup({ contentType: 'application/json', 'async': false });
         QUnit.start();
