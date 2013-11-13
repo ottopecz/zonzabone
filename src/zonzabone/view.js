@@ -50,7 +50,7 @@ define(function (require) {
          * @abstract
          * @type {String}
          */
-        that.template = "";
+        that.template = (options && options.template) ? options.template : "";
 
         /**
          * Partial templates of the view
