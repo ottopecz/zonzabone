@@ -84,6 +84,8 @@ define(function (require) {
          * @public
          */
         that.refresh = function (data) {
+            data = (data && data.hasOwnProperty('core') && typeof data.core === 'function') ?
+                data.core() : data;
             this.viewModel = $.extend(this.viewModel, data);
             this.render();
         };
