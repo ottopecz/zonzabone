@@ -103,7 +103,7 @@ define(function (require) {
             }
 
             if (isAdded) {
-                that.trigger('add', toAdd, that);
+                this.trigger('add', toAdd, that);
             }
 
             return this;
@@ -140,7 +140,7 @@ define(function (require) {
             });
 
             if (ret.length) {
-                that.trigger('remove', ret, that, filters);
+                this.trigger('remove', ret, that, filters);
             }
 
             return ret;
