@@ -8,7 +8,8 @@ define(function (require) {
 
     var ui_super    = require('zonzabone/ui_super'),
         view        = require('zonzabone/view'),
-        model       = require('zonzabone/model');
+        model       = require('zonzabone/model'),
+        $           = require('jquery');
 
     $.fn.extend({
         findClosest: function (sel) {
