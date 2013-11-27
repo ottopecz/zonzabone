@@ -15,6 +15,7 @@
         <li><a href="#arrOfObj">arrOfObj</a></li>
         <li><a href="#camelCase">camelCase</a></li>
         <li><a href="#without">without</a></li>
+        <li><a href="#executable">executable</a></li>
     </ul>
 </nav>
 <div id="content">
@@ -296,6 +297,25 @@
             return that.init(options);
         };
     }(Zonzabone, options));
+    </pre>
+</article>
+<article id="executable">
+    <h2>executable <span>(method) -- </span><code>utils.executable(func)</code></h2>
+    <code>utils.executable(func)</code>
+    <p>Returns true if the passed parameter is an executable (function)</p>
+    <h3>params</h3>
+    <ul>
+        <li><strong>func: </strong>The something to learn about</li>
+    </ul>
+    <h3>returns</h3>
+    <p>boolean</p>
+    <h3>example usage</h3>
+    <pre>
+        var func = function () {};
+
+        if (utils.executable(func) {
+            func();
+        }
     </pre>
 </article>
 </div> <!-- content ends -->

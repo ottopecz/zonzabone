@@ -110,5 +110,14 @@ define(function () {
         return c;
     };
 
+    /**
+     * Returns true if the argument is a function
+     * @param {Function} func The something to learn about
+     * @returns {boolean}
+     */
+    that.executable =  function (func) {
+        return (func && (func.constructor === Function))
+    };
+
     return that;
 });
