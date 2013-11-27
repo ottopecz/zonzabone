@@ -28,6 +28,8 @@ define(function (require) {
         that.reset = function (arr) {
             _arr = arr || [];
 
+            this.trigger('reset', this);
+
             return this;
         };
 
@@ -103,7 +105,7 @@ define(function (require) {
             }
 
             if (isAdded) {
-                this.trigger('add', toAdd, that);
+                this.trigger('add', toAdd, this);
             }
 
             return this;
@@ -140,7 +142,7 @@ define(function (require) {
             });
 
             if (ret.length) {
-                this.trigger('remove', ret, that, filters);
+                this.trigger('remove', ret, this, filters);
             }
 
             return ret;
