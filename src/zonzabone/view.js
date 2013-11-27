@@ -106,9 +106,9 @@ define(function (require) {
          * @public
          */
         that.init = function () {
-            this.el = this.el || this.$el ? this.$el.get(0) : null; // When the dom of the view is defined in the sub type
+            this.el = this.el || (this.$el ? this.$el.get(0) : null); // When the dom of the view is defined in the sub type
 
-            this.$el = this.$el || this.el ? $(this.el) : null; // When the dom of the view is defined in the sub type
+            this.$el = this.$el || (this.el ? $(this.el) : null); // When the dom of the view is defined in the sub type
 
             if (this.className) { // When className is specified in the sub type
                 this.$el.addClass(this.className);

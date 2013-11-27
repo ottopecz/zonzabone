@@ -28,7 +28,8 @@ require([
         'test/model',
         'test/utils',
         'test/view',
-        'test/view_collection'
+        'test/view_collection',
+        'test/list_view'
     ], function () {
         $.ajaxSetup({ contentType: 'application/json', 'async': false });
         QUnit.start();
