@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zonzabone - view collection</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<nav>
+    <a href="index.html" class="home">home</a>
+    <ul>
+        <li><a href="#fetch">reset</a></li>
+        <li><a href="#ajaxOptions">ajaxoptions</a></li>
+    </ul>
+</nav>
+<div id="content">
+    <h1>View Collection</h1>
+    <article>
+        <h2>General</h2>
+        <p>A collection of native javascript objects.
+            This type of collection extends the plain collection see <a href="collection.html">collection</a> The addition is the capability of fetching data from the server.
+            You can specify custom ajax parameters either upon construction like
+            <code> var viewCollection = collection({"url": "/foo/bar/", "ajaxSuccess": function (coll) {}})</code>
+            or when you call fetch see <a href="#fetch">fetch</a>. If custom ajax options are passed for both the constructor and the fetch method the fetch ones override the constructor ones.
+            This type is intended to be the data structure of list views.</p>
+    </article>
+    <article id="#fetch">
+        <h2>fetch <span>(method) -- </span><code>view_collection.fetch(options)</code></h2>
+        <p>Retrieves data from the server</p>
+        <h3>params</h3>
+        <ul>
+            <li><strong>options: </strong> !!!optional!!! options of the ajax call. Although it's optional probably makes sense to override the defaults</li>
+        </ul>
+        <h3>returns</h3>
+        <p>Nothing !!!Note: the ajaxSuccess returns the re-set collection!!!</p>
+        <h3>example usage</h3>
+        <pre>viewColl({"url": "/foo/bar/", "ajaxSuccess": function (coll) {}})</pre>
+    </article>
+    <article id="#ajaxOptions">
+        <h2>ajaxOptions <span>(property) -- </span><code>view_collection.ajaxOptions</code></h2>
+        <p>The parameters of the ajax call</p>
+        <h3>type</h3>
+        <p>Javascript object</p>
+        <h3>example usage</h3>
+        <pre>viewColl.ajaxOptions</pre>
+    </article>
+</div> <!-- content ends -->
+</body>
+</html>
