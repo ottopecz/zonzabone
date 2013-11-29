@@ -71,8 +71,8 @@ define(function (require) {
 
             ok(options.ajaxSuccess.calledOnce, 'ajaxSuccess is called');
             ok(callArg, 'ajaxSuccess was called with parameter');
-            ok(callArg.core, 'parameter is a collection');
-            equal(JSON.stringify(callArg.core()), JSON.stringify(resp), '')
+            ok(callArg.constructor === Array, 'parameter is an array');
+            equal(JSON.stringify(callArg), JSON.stringify(resp), '')
         },
         fetchCalledWith = function (options) {
             var inst = bdd.given;

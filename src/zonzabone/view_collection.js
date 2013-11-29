@@ -39,10 +39,10 @@ define(function (require) {
                     ret = $.extend(Object.create(source), withThis, {
                         "success": function (data) {
 
-                            Object.getPrototypeOf(that.ajaxOptions).success(data);
+                            _ajaxDefaults.success(data);
 
                             if (withThis.ajaxSuccess && utils.executable(withThis.ajaxSuccess)) {
-                                withThis.ajaxSuccess(that);
+                                withThis.ajaxSuccess(data);
                             }
                         },
                         "error": function () {
