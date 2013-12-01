@@ -9,8 +9,7 @@ require.config({
         'bdd'       : 'bower_components/laughingwookiejs/laughingwookie',
         'mustache'  : 'bower_components/mustache/mustache',
         'sinon'     : 'bower_components/sinon/sinon-1.7.3',
-        'mockjax'   : 'bower_components/jquery-mockjax/jquery.mockjax',
-        'polyfills' : 'lib/polyfills'
+        'mockjax'   : 'bower_components/jquery-mockjax/jquery.mockjax'
     },
     'shim' : {
         'mockjax'   : ['jquery']

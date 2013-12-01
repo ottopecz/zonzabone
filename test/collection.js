@@ -9,8 +9,6 @@ define(function (require) {
     var collection  = require('zonzabone/collection'),
         utils       = require('zonzabone/utils'),
         bdd         = require('bdd');
-        require('polyfills');
-
 
     module('Collection Tests');
 

@@ -9,7 +9,6 @@ define(function (require) {
     var viewcollection  = require('zonzabone/view_collection'),
         utils           = require('zonzabone/utils'),
         bdd             = require('bdd');
-    require('polyfills');
     require('sinon');
     require('mockjax');
 
