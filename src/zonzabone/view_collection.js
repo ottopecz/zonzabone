@@ -14,48 +14,42 @@ define(function (require) {
         var that = Object.create(collection(arr)),
 
             /**
-             * The default ajax parameters
-             * @type {{type: string, success: Function}}
-             * @private
-             */
-            _ajaxDefaults = {
-                "type": "GET",
-                "success": function (data) {
-                    that.reset(data);
-                }
-            },
-
-            /**
              * Extends the ajax defaults
-             * @param {Object} source The something to extend
-             * @param {Objects} withThis The something to extend with
+             * @param {Object} withThis The something to extend with
+             * @param {Object} ctx The something to extend
              * @returns {Object}
              * @private
              */
-            _extend = function (source, withThis) {
-                var ret = source;
+            _extend = function (withThis, ctx) {
+                var ret = $.extend(true, {}, ctx.ajaxDefaults);
 
                 if (withThis) {
-                    ret = $.extend(Object.create(source), withThis, {
+                    ret = $.extend(ret, withThis, {
                         "success": function (data) {
+                            ctx.ajaxDefaults.success(data);
 
-                            _ajaxDefaults.success(data);
-
-                            if (withThis.ajaxSuccess && utils.executable(withThis.ajaxSuccess)) {
-                                withThis.ajaxSuccess(data);
+                            if (this.ajaxOptions.ajaxSuccess && utils.executable(this.ajaxOptions.ajaxSuccess)) {
+                                this.ajaxOptions.ajaxSuccess(ctx);
                             }
-                        },
+                        }.bind(ctx),
                         "error": function () {
 
-                            if (withThis.ajaxError && utils.executable(withThis.ajaxError)) {
-                                withThis.ajaxError(arguments);
+                            if (this.ajaxOptions.ajaxError && utils.executable(this.ajaxOptions.ajaxError)) {
+                                this.ajaxOptions.ajaxError(arguments);
                             }
-                        }
+                        }.bind(ctx)
                     });
                 }
 
                 return ret;
             };
+
+        /**
+         * The default ajax parameters
+         * @type {{type: string, success: Function}}
+         * @public
+         */
+        that.ajaxDefaults = null;
 
         /**
          * The parameters of the fetch call
@@ -70,7 +64,7 @@ define(function (require) {
          */
         that.fetch = function (ajaxOptions) {
             if (ajaxOptions) {
-                this.ajaxOptions = _extend(_ajaxDefaults, ajaxOptions);
+                this.ajaxOptions = _extend(ajaxOptions, this);
             }
 
             $.ajax(this.ajaxOptions);
@@ -78,7 +72,14 @@ define(function (require) {
 
         that.init = function (options) {
 
-            this.ajaxOptions = _extend(_ajaxDefaults, options);
+            this.ajaxDefaults = {
+                "type": "GET",
+                "success": function (data) {
+                    this.reset(data);
+                }.bind(this)
+            };
+
+            this.ajaxOptions = _extend(options, this);
 
             return this;
         };
