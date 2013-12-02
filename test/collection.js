@@ -16,6 +16,10 @@ define(function (require) {
         bdd.GIVEN(collInsWithMultipleElmnts).WHEN(setKeyTo, "custom value" ).THEN(keyChangedOnAllElmntsTo, "custom value");
     });
 
+    test('set', function () {
+        bdd.GIVEN(collInsWithMultipleElmnts).WHEN(getWithKeyOf, "keyCommon" ).THEN(getReturns, getReturnData);
+    });
+
     test('removeWhere', function () {
         bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithObj, {"key3": "value3"}).THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
         bdd.GIVEN(collInsWithMultipleElmnts).WHEN(removeWithObj, {"key3": "value3", "keyCommon": "valueCommon"}).THEN(collContains, [{"key1": "value1"}, {"key2": "value2", "keyCommon": "valueCommon"}]);
@@ -54,6 +58,20 @@ define(function (require) {
             {"key2": "value2", "keyCommon": "valueCommon"},
             {"key3": "value3", "keyCommon": "valueCommon"}
         ],
+        getReturnData = [
+            {"key2": "value2", "keyCommon": "valueCommon"},
+            {"key3": "value3", "keyCommon": "valueCommon"}
+        ],
+        getWithKeyOf = function (key) {
+            var inst = bdd.given;
+
+            return inst.getElements(key);
+        },
+        getReturns = function (expected) {
+            var ret = bdd.when;
+
+            deepEqual(ret, expected, 'The get method return the elements with the given key');
+        },
         collInsWithMultipleElmnts = function () {
             return collection(utils.shallowClone(data));
         },

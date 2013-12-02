@@ -54,7 +54,7 @@ define(function (require) {
         };
 
         /**
-         * Returns the element/s of the collection with given key
+         * Returns the values of element/s of the collection with given key
          * @param key {String} Key to values
          * @returns {Array.<object>} or {Object}
          * @public
@@ -69,6 +69,24 @@ define(function (require) {
             });
 
             if (ret.length === 1) { ret = ret[0]; }
+
+            return ret;
+        };
+
+        /**
+         * Returns the element/s of the collection with given key
+         * @param key {String} Key to values
+         * @returns {Array.<object>} or {Object}
+         * @public
+         */
+        that.getElements = function (key) {
+            var ret = [];
+
+            _arr.forEach(function (e) {
+                if (e[key]) {
+                    ret.push(e);
+                }
+            });
 
             return ret;
         };
