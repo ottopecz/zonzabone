@@ -202,7 +202,27 @@ define(function (require) {
         /**
          * Proxying to the native methods
          */
-        ['forEach', 'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'filter', 'map'].forEach(function (name) {
+        [
+            'pop',
+            'push',
+            'reverse',
+            'shift',
+            'sort',
+            'splice',
+            'unshift',
+            'concat',
+            'join',
+            'slice',
+            'filter',
+            'map',
+            'forEach',
+            'every',
+            'some',
+            'filter',
+            'map',
+            'reduce',
+            'reduceRight'
+        ].forEach(function (name) {
             that[name] = function () {
                 return Array.prototype[name].apply(_arr, arguments);
             };
