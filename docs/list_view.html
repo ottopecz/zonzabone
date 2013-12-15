@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zonzabone - view</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<nav>
+    <a href="index.html" class="home">home</a>
+    <ul>
+        <li><a href="#viewModel">viewModel</a></li>
+        <li><a href="#viewCollection">viewCollection</a></li>
+        <li><a href="#template">template</a></li>
+        <li><a href="#partials">partials</a></li>
+        <li><a href="#render">render</a></li>
+        <li><a href="#refresh">refresh</a></li>
+        <li><a href="#init">init</a></li>
+    </ul>
+</nav>
+<div id="content">
+    <h1>View</h1>
+    <article>
+        <h2>General</h2>
+        <p>Very similar to a basic view except its data structure is a view_collection and not a view model.
+        It re-renders the dom upon the 'add', 'remove', 'reset' events of its view collection so it implements
+        a simple, one-direction data-binding</p>
+        <pre>
+        // This is a view
+        (function (NS, Zonzabone) {
+
+            var that = Object.create(Zonzabone.view());
+
+            that.el = $('&lt;ul&gt;&lt;/ul&gt;').get(0);
+
+            that.partials = {"entry": "&lt;li&gt;{{text}}&lt;/li&gt;"}
+
+            that.viewCollection = Zonzabone.view_collection([
+                {"text": "some text" },
+                {"text": "some other text" }
+            ]); // If you declare this the init of the super factory will merge this and the super view model.
+
+            that.className = 'some-class'; // If you declare this the init of the super factory will
+                                           // add this class to <a href="#$el">$el</a>
+
+            NS.view = that.getProto().init.call(that);
+        }(NS, Zonzabone))
+        </pre>
+    </article>
+    <article id="refresh">
+        <h2>refresh <span>(method) -- </span>
+            <code>view.refresh(data)</code>
+            <a class="back-to-top" href="#content"> back to top</a>
+        </h2>
+        <p>Re-renders the view with given data.
+            The data will reset the view collection and the collection is bound to the view</p>
+        <h3>params</h3>
+        <ul>
+            <li><strong>data: </strong>Data to re-render the view with. This will reset the view collection.</li>
+        </ul>
+        <h3>returns</h3>
+        <p>The context view</p>
+        <h3>example usage</h3>
+        <pre>
+        // This is a controller
+        (function (NS, Zonzabone) {
+
+            var that = Object.create(Zonzabone.controller());
+
+            that.listView = Zonzabone.list_view({
+                "el": $('&lt;ul&gt;&lt;/ul&gt;').get(0),
+                "partials": {"entry": "&lt;li&gt;{{text}}&lt;/li&gt;"}
+            });
+
+            that.init = function () {
+                this.getProto().init.bind(this)();
+
+                // The argument will reset the view collection.
+                this.listView.refresh([
+                    {"text": "some text"},
+                    {"text": "some other text"}
+                ]);
+            };
+
+            NS.controller = that.init();
+        }(NS, Zonzabone))
+        </pre>
+    </article>
+    <article id="init">
+        <h2>init <span>(method) -- </span>
+            <code>view.init</code>
+            <a class="back-to-top" href="#content"> back to top</a>
+        </h2>
+        <p>Sets up the state of the view object.
+            Sets the <a href="#className">className</a>, <a href="#$el">$el</a> and <a href="#el">el</a>
+            if you defined them inside the factory.
+            Also delegates handler on the 'add', 'remove', 'reset' events of the view collection.
+            The handler will re-render the list view so this is a one-direction data-binding.
+            Most probably the init function of your custom view factory
+            will execute this. See the example below.</p>
+        <h3>params</h3>
+        <p>None</p>
+        <h3>returns</h3>
+        <p>The context view</p>
+        <h3>example usage</h3>
+        <pre>
+        // This is a view
+        (function (NS, Zonzabone) {
+
+            var that = Object.create(Zonzabone.view());
+
+            that.el = $('&lt;ul&gt;&lt;/ul&gt;').get(0);
+
+            that.partials = {"entry": "&lt;li&gt;{{text}}&lt;/li&gt;"}
+
+            that.viewCollection = Zonzabone.view_collection([
+                {"text": "some text" },
+                {"text": "some other text" }
+            ]); // If you declare this the init of the super factory will merge this and the super view model.
+
+            that.className = 'some-class'; // If you declare this the init of the super factory will add this class to <a href="#$el">$el</a>
+
+            that.init = function () {
+                this.getProto().init.call(this); //!!! In a view always execute the init of the super factory !!!
+
+                // Some custom code comes here
+
+                return this;
+            };
+
+            NS.view = that.init();
+        }(NS, Zonzabone))
+        </pre>
+    </article>
+    </div> <!-- content ends -->
+</body>
+</html>
+</html>
