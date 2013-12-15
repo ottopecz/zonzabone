@@ -58,7 +58,6 @@ define(function (require) {
             data = (data && data.hasOwnProperty('core') && typeof data.core === 'function') ?
                 data.core() : data;
             this.viewCollection.reset(data);
-            this.render();
         };
 
         /**
