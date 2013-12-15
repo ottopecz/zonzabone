@@ -15,12 +15,14 @@
 <h1>ui_super</h1>
 <article>
     <h2>General</h2>
-    <p>The four main types inherits from ui_super. So put in anything which all four might need.</p>
+    <p>The default types inherits from ui_super. So put in here anything which all the types might need.</p>
 </article>
 <article id="getProto">
-    <h2>getProto <span>(method) -- </span></h2>
+    <h2>getProto <span>(method) -- </span>
+        <code>contr||view||listView||model||coll||viewColl.getProto()</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <code>contr/view/model/collection.getProto()</code>
-    <p>Return the next object up in the prototype chain</p>
     <h3>params</h3>
     <p>None</p>
     <h3>returns</h3>
@@ -35,7 +37,9 @@
             var that = Object.create(Zonzabone.controller(options));
 
             that.init = function (options) {
-                this.getProto().init.bind(this)(options);
+                this.getProto().init.call(this, options);
+
+                // Some additional code comes here
 
                 return this;
             };
