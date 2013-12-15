@@ -8,7 +8,43 @@ define(function (require) {
 
     module('View Tests');
 
-    test('refresh with palin object', function () {
+    test('el of view can be overridden in sub-type', function () {
+
+        bdd
+            .GIVEN(subViewTypeWithDOM, domEL)
+            .WHEN(subTypeInstantiates)
+            .THEN(viewInstElIs, domEL)
+            .AND(viewInst$ElIs, $(domEL));
+    });
+
+    test('$el of view can be overridden in sub-type', function () {
+
+        bdd
+            .GIVEN(subViewTypeWithjQuery, $domEL)
+            .WHEN(subTypeInstantiates)
+            .THEN(viewInstElIs, $domEL.get(0))
+            .AND(viewInst$ElIs, $domEL);
+    });
+
+    test('view can be initialized with a dom element', function () {
+
+        bdd
+            .GIVEN(aViewType)
+            .WHEN(anInstCreatedWith, {"el": domEL})
+            .THEN(viewInstElIs, domEL)
+            .AND(viewInst$ElIs, $(domEL));
+    });
+
+    test('view can be initialized with a jquery wrapped dom element', function () {
+
+        bdd
+            .GIVEN(aViewType)
+            .WHEN(anInstCreatedWith, {"$el": $domEL})
+            .THEN(viewInst$ElIs, $domEL)
+            .AND(viewInstElIs, $domEL.get(0));
+    });
+
+    test('refresh with plain object', function () {
 
         bdd.GIVEN(aViewInst).WHEN(refreshedWith, {"key": "value"} ).THEN(viewInstRerenderedWith, {"key": "value"});
     });
@@ -20,16 +56,63 @@ define(function (require) {
 
     test('view can be initialized with template', function () {
         
-        bdd.GIVEN(aViewType).WHEN(anInstCreatedWith, "<p>I'm a template</p>").THEN(viewInstTemplateIs, "<p>I'm a template</p>");
+        bdd.GIVEN(aViewType).WHEN(anInstCreatedWith, {"template": "<p>I'm a template</p>"}).THEN(viewInstTemplateIs, "<p>I'm a template</p>");
     });
 
-    var viewInstTemplateIs = function (templ) {
+    var domEL = $('<div class="dom-element"></div>').get(0),
+        $domEL = $('<div class="jquery-wrapped-dom-element"></div>'),
+        subTypeInstantiates = function () {
+            var subType = bdd.given;
+
+            return subType();
+        },
+        subViewTypeWithjQuery = function ($el) {
+            return function () {
+                var that = Object.create(view());
+
+                that.$el = $el;
+
+                that.init = function () {
+                    this.getProto().init.apply(this, arguments);
+
+                    return this;
+                };
+
+                return that.init();
+            };
+        },
+        subViewTypeWithDOM = function (el) {
+            return function () {
+                var that = Object.create(view());
+
+                that.el = el;
+
+                that.init = function () {
+                    this.getProto().init.apply(this, arguments);
+
+                    return this;
+                };
+
+                return that.init();
+            };
+        },
+        viewInstElIs = function (el) {
+            var inst = bdd.when;
+
+            deepEqual(inst.el, el, '');
+        },
+        viewInst$ElIs = function ($el) {
+            var inst = bdd.when;
+
+            deepEqual(inst.$el, $el, '');
+        },
+        viewInstTemplateIs = function (templ) {
             var inst = bdd.when;
 
             equal(inst.template, templ, '');
         },
-        anInstCreatedWith = function (templ) {
-            return bdd.given({"template": templ});
+        anInstCreatedWith = function (options) {
+            return bdd.given(options);
         },
         aViewType = function () {
             return view;
@@ -52,6 +135,7 @@ define(function (require) {
             var inst = bdd.when;
 
     		equal(inst.$('p').text(), delta.key, '');
-    	}
+
+        };
 
 });
