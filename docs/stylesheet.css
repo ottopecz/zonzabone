@@ -80,3 +80,7 @@ h2 { margin-bottom: 10px; }
 h2 span, h2 code { font-weight: normal; font-size: 14px; }
 
 div.clearfix { clear: both; }
+
+a.back-to-top {
+    font-size: 14px;
+}

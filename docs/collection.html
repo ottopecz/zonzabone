@@ -26,8 +26,11 @@
     <p>A collection is a list of native javascript objects.
         The factory function of the collection doesn't check on the type of the initial arguments so you have to make sure that it's really an array of objects.</p>
 </article>
-<article>
-    <h2>reset <span>(method) -- </span><code>collection.reset(arr)</code></h2>
+<article id="reset">
+    <h2>reset <span>(method) -- </span>
+        <code>collection.reset(arr)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Resets the core of the collection either to an empty array or the passed array</p>
     <h3>params</h3>
     <ul>
@@ -38,17 +41,22 @@
     <h3>example usage</h3>
     <pre>coll.reset([{"k1": "v1"}, {"k2": "v2"}])</pre>
 </article>
-<article>
-    <h2>length <span>(property) -- </span><code>collection.length</code></h2>
+<article id="length">
+    <h2>length <span>(property) -- </span>
+        <code>collection.length</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>The length (number of elements) of the collection. This is a proxy to the native length property of the core array.</p>
     <h3>type</h3>
     <p>Number</p>
     <h3>example usage</h3>
     <pre>var l = coll.length;</pre>
 </article>
-<article>
-    <h2>core <span>(method) -- </span><code>collection.core()</code></h2>
-
+<article id="core">
+    <h2>core <span>(method) -- </span>
+        <code>collection.core()</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Returns the core array of the collection</p>
     <h3>params</h3>
     <ul>
@@ -59,8 +67,11 @@
     <h3>example usage</h3>
     <pre>var arr = coll.core()</pre>
 </article>
-<article>
-    <h2>get <span>(method) -- </span><code>collection.get(key)</code></h2>
+<article id="get">
+    <h2>get <span>(method) -- </span>
+        <code>collection.get(key)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Returns all the element with the given key</p>
     <h3>params</h3>
     <ul>
@@ -71,8 +82,11 @@
     <h3>example usage</h3>
     <pre>var ret = coll.get("robinTheBirdy")</pre>
 </article>
-<article>
-    <h2>set <span>(method) -- </span><code>collection.set(key, value)</code></h2>
+<article id="set">
+    <h2>set <span>(method) -- </span>
+        <code>collection.set(key, value)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Sets the given key, value pair on every element in the collection. (Doesn't check on the key beforehand. So if the key is already set it's gonna be overwritten)</p>
     <h3>params</h3>
     <ul>
@@ -84,8 +98,11 @@
     <h3>example usage</h3>
     <pre>collection.get("robinTheBirdy", "singsNicely")</pre>
 </article>
-<article>
-    <h2>add <span>(method) -- </span><code>collection.add(arr||obj)</code></h2>
+<article id="add">
+    <h2>add <span>(method) -- </span>
+        <code>collection.add(arr||obj)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Adds a new array or a single object to the collection.</p>
     <h3>params</h3>
     <ul>
@@ -96,8 +113,11 @@
     <h3>example usage</h3>
     <pre>coll.add([{"k1": "v1"}, {"k2": "v2"}])</pre>
 </article>
-<article>
-    <h2>removeWhere <span>(method) -- </span><code>collection.removeWhere(filters||key, value)</code></h2>
+<article id="removeWhere">
+    <h2>removeWhere <span>(method) -- </span>
+        <code>collection.removeWhere(filters||key, value)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Removes those elements from the collection which have all the key value pair given as arguments</p>
     <h3>params</h3>
     <ul>
@@ -115,8 +135,11 @@
     <p>or</p>
     <pre>coll.removeWhere("k1", "v1")</pre>
 </article>
-<article>
-    <h2>getWhere <span>(method) -- </span><code>collection.getWhere(key, value)</code></h2>
+<article id="getWhere">
+    <h2>getWhere <span>(method) -- </span>
+        <code>collection.getWhere(key, value)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Returns all the elements which have the given key value pair.</p>
     <h3>params</h3>
     <ul>
@@ -128,8 +151,11 @@
     <h3>example usage</h3>
     <pre>var arr = coll.getWhere("someKey", "someValue")</pre>
 </article>
-<article>
-    <h2>without <span>(method) -- </span><code>collection.getWhere(b, func)</code></h2>
+<article id="without">
+    <h2>without <span>(method) -- </span>
+        <code>collection.getWhere(b, func)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Gets new array of all items in this collection and not in b. Relative complement of B in A</p>
     <h3>params</h3>
     <ul>
