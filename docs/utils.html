@@ -25,7 +25,10 @@
     <p></p>
 </article>
 <article id="shallowClone">
-    <h2>shallowClone <span>(method) -- </span><code>util.shallowClone(obj)</code></h2>
+    <h2>shallowClone <span>(method) -- </span>
+        <code>utils.shallowClone(obj)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Clones an object non-recursively.</p>
     <h3>params</h3>
     <ul><li><strong>obj: </strong>The object to be cloned</li></ul>
@@ -54,7 +57,7 @@
                 this.getProto().init.bind(this)(options);
 
                 // Options will be cloned non-recursively so the inside object will not be copied over
-                clone = Zonzabone.utils.shallowClone(options);
+                var clone = Zonzabone.utils.shallowClone(options);
 
                 return this;
             };
@@ -65,7 +68,10 @@
     </pre>
 </article>
 <article id="deepClone">
-    <h2>deepClone <span>(method) -- </span><code>util.deepClone(obj)</code></h2>
+    <h2>deepClone <span>(method) -- </span>
+        <code>utils.deepClone(obj)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Clones an object recursively.</p>
     <h3>params</h3>
     <ul><li><strong>obj: </strong>The object to be cloned</li></ul>
@@ -94,7 +100,7 @@
                 this.getProto().init.bind(this)(options);
 
                 // Options will be cloned recursively so inside object will be copied over
-                clone = Zonzabone.utils.deepClone(options);
+                var clone = Zonzabone.utils.deepClone(options);
 
                 return this;
             };
@@ -105,7 +111,10 @@
     </pre>
 </article>
 <article id="readCookie">
-    <h2>readCookie <span>(method) -- </span><code>util.readCookie(name)</code></h2>
+    <h2>readCookie <span>(method) -- </span>
+        <code>utils.readCookie(name)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Reads the document cookie with the passed name</p>
     <h3>params</h3>
     <ul><li><strong>name: </strong>The name of the cookie</li></ul>
@@ -142,7 +151,10 @@
     </pre>
 </article>
 <article id="validObj">
-    <h2>validObj <span>(method) -- </span><code>util.validObj(elmnt)</code></h2>
+    <h2>validObj <span>(method) -- </span>
+        <code>utils.validObj(elmnt)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Returns true if the passed object is a "data" object. So it's not array, function or null</p>
     <h3>params</h3>
     <ul><li><strong>elmnt: </strong>The object to find out about.</li></ul>
@@ -184,7 +196,10 @@
     </pre>
 </article>
 <article id="arrOfObj">
-    <h2>arrOfObj <span>(method) -- </span><code>util.arrOfObj(arr)</code></h2>
+    <h2>arrOfObj <span>(method) -- </span>
+        <code>utils.arrOfObj(arr)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Test an array if its elements are valid "data" array. So they are not array, function or null</p>
     <h3>params</h3>
     <ul><li><strong>arr: </strong> Array to find out about</li></ul>
@@ -226,7 +241,10 @@
     </pre>
 </article>
 <article id="camelCase">
-    <h2>camelCase <span>(method) -- </span><code>util.camelCase(str)</code></h2>
+    <h2>camelCase <span>(method) -- </span>
+        <code>utils.camelCase(str)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <p>Converts strings of dash concatenated words into camel cased strings.</p>
     <h3>params</h3>
     <ul><li><strong>str: </strong> String to camel-case</li></ul>
@@ -258,8 +276,11 @@
     </pre>
 </article>
 <article id="without">
-    <h2>without <span>(method) -- </span><code>util.without(a, b, func)</code></h2>
-    <code>util.without(a, b, func)</code>
+    <h2>without <span>(method) -- </span>
+        <code>utils.without(a, b, func)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
+    <code>utils.without(a, b, func)</code>
     <p>Get new array of all items in a and not in b.  Relative complement of B in A. Those elements which belong to A but don't belong to B</p>
     <h3>params</h3>
     <ul>
@@ -300,9 +321,12 @@
     </pre>
 </article>
 <article id="executable">
-    <h2>executable <span>(method) -- </span><code>utils.executable(func)</code></h2>
+    <h2>executable <span>(method) -- </span>
+        <code>utils.executable(func)</code>
+        <a class="back-to-top" href="#content"> back to top</a>
+    </h2>
     <code>utils.executable(func)</code>
-    <p>Returns true if the passed parameter is an executable (function)</p>
+    <p>Returns true if the passed parameter is an executable like a function</p>
     <h3>params</h3>
     <ul>
         <li><strong>func: </strong>The something to learn about</li>
