@@ -11,37 +11,55 @@ define(function (require) {
     test('el of view can be overridden in sub-type', function () {
 
         bdd
-            .GIVEN(subViewTypeWithDOM, domEL)
+            .GIVEN(subTypeCreatedFromSuperWithDOM, view, domELSub)
             .WHEN(subTypeInstantiates)
-            .THEN(viewInstElIs, domEL)
-            .AND(viewInst$ElIs, $(domEL));
+            .THEN(viewInstElIs, domELSub)
+            .AND(viewInst$ElIs, $(domELSub));
+    });
+
+    test('el of view can be overridden in sub-type even though the super type has el already', function () {
+
+        bdd
+            .GIVEN(subTypeCreatedFromSuperWithDOM, super_view, domELSuper)
+            .WHEN(subTypeInstantiates)
+            .THEN(viewInstElIs, domELSuper)
+            .AND(viewInst$ElIs, $(domELSuper));
     });
 
     test('$el of view can be overridden in sub-type', function () {
 
         bdd
-            .GIVEN(subViewTypeWithjQuery, $domEL)
+            .GIVEN(subTypeCreatedFromSuperWithjQuery, view, $domELSub)
             .WHEN(subTypeInstantiates)
-            .THEN(viewInstElIs, $domEL.get(0))
-            .AND(viewInst$ElIs, $domEL);
+            .THEN(viewInstElIs, $domELSub.get(0))
+            .AND(viewInst$ElIs, $domELSub);
+    });
+
+    test('$el of view can be overridden in sub-type even though the super type has $el already', function () {
+
+        bdd
+            .GIVEN(subTypeCreatedFromSuperWithjQuery, super_view, $domELSuper)
+            .WHEN(subTypeInstantiates)
+            .THEN(viewInstElIs, $domELSuper.get(0))
+            .AND(viewInst$ElIs, $domELSuper);
     });
 
     test('view can be initialized with a dom element', function () {
 
         bdd
             .GIVEN(aViewType)
-            .WHEN(anInstCreatedWith, {"el": domEL})
-            .THEN(viewInstElIs, domEL)
-            .AND(viewInst$ElIs, $(domEL));
+            .WHEN(anInstCreatedWith, {"el": domELSub})
+            .THEN(viewInstElIs, domELSub)
+            .AND(viewInst$ElIs, $(domELSub));
     });
 
     test('view can be initialized with a jquery wrapped dom element', function () {
 
         bdd
             .GIVEN(aViewType)
-            .WHEN(anInstCreatedWith, {"$el": $domEL})
-            .THEN(viewInst$ElIs, $domEL)
-            .AND(viewInstElIs, $domEL.get(0));
+            .WHEN(anInstCreatedWith, {"$el": $domELSub})
+            .THEN(viewInst$ElIs, $domELSub)
+            .AND(viewInstElIs, $domELSub.get(0));
     });
 
     test('refresh with plain object', function () {
@@ -55,25 +73,27 @@ define(function (require) {
     });
 
     test('view can be initialized with template', function () {
-        
+
         bdd.GIVEN(aViewType).WHEN(anInstCreatedWith, {"template": "<p>I'm a template</p>"}).THEN(viewInstTemplateIs, "<p>I'm a template</p>");
     });
 
-    var domEL = $('<div class="dom-element"></div>').get(0),
-        $domEL = $('<div class="jquery-wrapped-dom-element"></div>'),
+    var domELSuper = $('<div class="super-dom-element"></div>').get(0),
+        domELSub = $('<div class="sub-dom-element"></div>').get(0),
+        $domELSuper = $('<div class="super-jquery-wrapped-dom-element"></div>'),
+        $domELSub = $('<div class="sub-jquery-wrapped-dom-element"></div>'),
         subTypeInstantiates = function () {
             var subType = bdd.given;
 
             return subType();
         },
-        subViewTypeWithjQuery = function ($el) {
+        subTypeCreatedFromSuperWithjQuery = function (super_view, $el) {
             return function () {
                 var that = Object.create(view());
 
                 that.$el = $el;
 
                 that.init = function () {
-                    this.getProto().init.apply(this, arguments);
+                    defaultView.init.apply(this, arguments);
 
                     return this;
                 };
@@ -81,14 +101,30 @@ define(function (require) {
                 return that.init();
             };
         },
-        subViewTypeWithDOM = function (el) {
+        defaultView = view(),
+        super_view = function () {
             return function () {
-                var that = Object.create(view());
+                var that = Object.create(defaultView);
 
                 that.el = el;
 
                 that.init = function () {
-                    this.getProto().init.apply(this, arguments);
+                    defaultView.init.apply(this, arguments);
+
+                    return this;
+                };
+
+                return that.init();
+            };
+        },
+        subTypeCreatedFromSuperWithDOM = function (super_view, el) {
+            return function () {
+                var that = Object.create(super_view());
+
+                that.el = el;
+
+                that.init = function () {
+                    defaultView.init.apply(this, arguments);
 
                     return this;
                 };
@@ -137,5 +173,4 @@ define(function (require) {
     		equal(inst.$('p').text(), delta.key, '');
 
         };
-
 });
