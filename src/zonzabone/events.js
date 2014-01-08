@@ -3,11 +3,13 @@
  * @date 17/06/2013
  */
 /*global define*/
-define(function () {
+define(function (require) {
     "use strict";
 
+    var $ = require('jquery');
+
     return function () {
-        var that = {},
+        var that = Object.create($.Deferred()),
             _topics = {},
             _execHandler = function (subscriber, args) {
                 subscriber.func.apply(subscriber.ctx, args);
