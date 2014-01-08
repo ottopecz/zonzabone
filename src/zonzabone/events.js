@@ -31,8 +31,10 @@ define(function (require) {
                 if (len) {
                     for (k = 0; k < len; k++) {
                         subscriber = subscribers[k];
-                        // Making sure event fires asynchronously
-                        setTimeout(_execHandler, 0, subscriber, arguments);
+
+                        // !!! asynchronous events !!!
+                        // Based on research 25 ms must enough for any browser to render the dom
+                        setTimeout(_execHandler, 25, subscriber, arguments);
                     }
                 } else if (i === l - 1 && sum === 0) {
                     return false;
