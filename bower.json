@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "mustache": "0.7.2",
-    "requirejs": "2.1.8"
+    "requirejs": "2.1.9"
   },
   "devDependencies": {
     "jquery": "2.0.3",
